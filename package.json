@@ -22,11 +22,7 @@
   },
   "license": "",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^8.14.0",
-    "@types/big.js": "^4.0.5",
-    "@types/classnames": "^2.2.4",
-    "@types/react": "~17.0.1",
-    "@types/react-dom": "~16.9.0"
+    "@mendix/pluggable-widgets-tools": "^8.14.0"
   },
   "dependencies": {
     "classnames": "^2.2.6"

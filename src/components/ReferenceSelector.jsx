@@ -1,22 +1,7 @@
-import { createElement, CSSProperties, Fragment, useState } from "react";
-import { ListValue, ListAttributeValue } from "mendix";
 import classNames from "classnames";
+import { Fragment, createElement, useState } from "react";
 
-export interface ReferenceSelectorProps {
-    classProp: string;
-    style?: CSSProperties;
-    tabIndex?: number;
-    id: string;
-    value: string;
-    onLeave: (value: string, isChanged: boolean) => void;
-    datasource: ListValue;
-    dropdownValue: ListAttributeValue<string>;
-    hasError?: boolean;
-    required?: boolean;
-    noneSelectedText: string;
-}
-
-export const ReferenceSelector = (props: ReferenceSelectorProps) => {
+export const ReferenceSelector = props => {
     const {
         classProp,
         style,
@@ -37,18 +22,17 @@ export const ReferenceSelector = (props: ReferenceSelectorProps) => {
     const className = classNames("form-control", classProp);
     const labelledby = `${id}-label` + (hasError ? ` ${id}-error` : "");
 
-    function toggleDropdown(): void {
+    function toggleDropdown() {
         // show the dropdown popup and trigger the search
         setShowPopup(!showPopup);
     }
 
-    function onSelect(text: string): void {
+    function onSelect(text) {
         if (datasource.items !== undefined) {
-            console.log("Selected: " + text);
-            setValueState(text);
             toggleDropdown();
             // Hand the selected value back up
-            onLeave(text, true);
+            onLeave(text, text !== valueState);
+            setValueState(text);
         }
     }
 
@@ -106,17 +90,17 @@ export const ReferenceSelector = (props: ReferenceSelectorProps) => {
                                             .includes(searchText.toLowerCase())
                                     )
                                     .map((obj, key) => {
-                                        const value = dropdownValue(obj).value;
-                                        if (value !== undefined) {
+                                        const text = dropdownValue(obj).value;
+                                        if (text !== undefined) {
                                             return (
                                                 <li
-                                                    className={value === valueState ? ".selected" : ""}
+                                                    className={text === valueState ? ".selected" : ""}
                                                     key={key}
                                                     onClick={() => {
-                                                        onSelect(value);
+                                                        onSelect(text);
                                                     }}
                                                 >
-                                                    {value}
+                                                    {text}
                                                 </li>
                                             );
                                         } else {
@@ -125,17 +109,17 @@ export const ReferenceSelector = (props: ReferenceSelectorProps) => {
                                     })}
                             {searchText.trim().length === 0 &&
                                 datasource.items.map((obj, key) => {
-                                    const value = dropdownValue(obj).value;
-                                    if (value !== undefined) {
+                                    const text = dropdownValue(obj).value;
+                                    if (text !== undefined) {
                                         return (
                                             <li
-                                                className={value === valueState ? "selected" : ""}
+                                                className={text === valueState ? "selected" : ""}
                                                 key={key}
                                                 onClick={() => {
-                                                    onSelect(value);
+                                                    onSelect(text);
                                                 }}
                                             >
-                                                {value}
+                                                {text}
                                             </li>
                                         );
                                     } else {

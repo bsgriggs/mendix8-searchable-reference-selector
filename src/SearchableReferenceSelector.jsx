@@ -1,19 +1,18 @@
-import { Component, Fragment, ReactNode, createElement } from "react";
+/* eslint-disable sort-imports */
+import { Alert } from "./components/Alert";
+import { Component, Fragment, createElement } from "react";
 import { hot } from "react-hot-loader/root";
 import { ReferenceSelector } from "./components/ReferenceSelector";
-import { SearchableReferenceSelectorContainerProps } from "../typings/SearchableReferenceSelectorProps";
-import { Alert } from "./components/Alert";
-
 import "./ui/ReferenceSelector.css";
 
-class SearchableReferenceSelector extends Component<SearchableReferenceSelectorContainerProps> {
-    private readonly onLeaveHandle = this.onLeave.bind(this);
+class SearchableReferenceSelector extends Component {
+    onLeaveHandle = this.onLeave.bind(this);
 
-    componentDidMount(): void {
+    componentDidMount() {
         this.props.returnJSON.setValidator(this.validator.bind(this));
     }
 
-    render(): ReactNode {
+    render() {
         const value = this.props.current.value ? this.props.current.value : this.props.noneSelectedText;
         const validationFeedback = this.props.returnJSON.validation;
         const required = !!(this.props.requiredMessage && this.props.requiredMessage.value);
@@ -42,21 +41,26 @@ class SearchableReferenceSelector extends Component<SearchableReferenceSelectorC
         );
     }
 
-    private validator(value: string | undefined): string | undefined {
+    validator(value) {
         const { requiredMessage } = this.props;
 
         if (requiredMessage && requiredMessage.value && !value) {
             return requiredMessage.value;
         }
+        return null;
     }
 
-    private onLeave(value: string, isChanged: boolean): void {
+    onLeave(value, isChanged) {
         if (!isChanged) {
             return;
         }
-        console.log(value);
-        const returnJSON = { attribute: value };
-        this.props.returnJSON.setValue(JSON.stringify(returnJSON));
+        console.log(this.props.requiredMessage);
+        if (value !== "" || this.props.requiredMessage.value === "") {
+            const returnJSON = { attribute: value };
+            this.props.returnJSON.setValue(JSON.stringify(returnJSON));
+        } else {
+            this.props.returnJSON.setValue();
+        }
         if (this.props.onChangeAction !== undefined && this.props.onChangeAction.canExecute) {
             this.props.onChangeAction.execute();
         }
