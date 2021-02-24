@@ -10,7 +10,7 @@
         <propertyGroup caption="General">
             <propertyGroup caption="Data Source">
                 <property key="Datasource" type="datasource" isList="true" required="true">
-                    <caption>Data source</caption>
+                    <caption>Data Source</caption>
                     <description>The objects that will be selectable in the dropdown</description>
                 </property>
                 <property key="dropdownValue" type="attribute" required="true" dataSource="Datasource">
@@ -39,10 +39,14 @@
             </propertyGroup>
             <propertyGroup caption="Label">
                 <systemProperty key="Label" />
+                <property key="noneSelectedText" type="string" required="false">
+                    <caption>No Selection Text</caption>
+                    <description>Text to be shown if no association is set</description>
+                </property>
             </propertyGroup>
             <propertyGroup caption="Validation">
                 <property key="requiredMessage" type="textTemplate" required="false">
-                    <caption>Required message</caption>
+                    <caption>Required Message</caption>
                     <description/>
                 </property>
             </propertyGroup>

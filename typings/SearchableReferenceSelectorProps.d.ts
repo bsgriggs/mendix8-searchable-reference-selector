@@ -16,6 +16,7 @@ export interface SearchableReferenceSelectorContainerProps {
     dropdownValue: ListAttributeValue<string>;
     returnJSON: EditableValue<string>;
     current: EditableValue<string>;
+    noneSelectedText: string;
     requiredMessage?: DynamicValue<string>;
     onChangeAction?: ActionValue;
 }
@@ -27,6 +28,7 @@ export interface SearchableReferenceSelectorPreviewProps {
     dropdownValue: string;
     returnJSON: string;
     current: string;
+    noneSelectedText: string;
     requiredMessage: string;
     onChangeAction: {} | null;
 }

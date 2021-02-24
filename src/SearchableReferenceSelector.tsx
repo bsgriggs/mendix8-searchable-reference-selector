@@ -7,10 +7,6 @@ import { Alert } from "./components/Alert";
 
 import "./ui/ReferenceSelector.css";
 
-enum defaultSearch {
-    NoSearch = "- None -"
-}
-
 class SearchableReferenceSelector extends Component<SearchableReferenceSelectorContainerProps> {
     private readonly onLeaveHandle = this.onLeave.bind(this);
 
@@ -19,7 +15,7 @@ class SearchableReferenceSelector extends Component<SearchableReferenceSelectorC
     }
 
     render(): ReactNode {
-        const value = this.props.current.value ? this.props.current.value : defaultSearch.NoSearch;
+        const value = this.props.current.value ? this.props.current.value : this.props.noneSelectedText;
         const validationFeedback = this.props.current.validation;
         const required = !!(this.props.requiredMessage && this.props.requiredMessage.value);
 
@@ -31,13 +27,14 @@ class SearchableReferenceSelector extends Component<SearchableReferenceSelectorC
                             id={this.props.id}
                             value={value}
                             style={this.props.style}
-                            class={this.props.class}
+                            classProp={this.props.class}
                             tabIndex={this.props.tabIndex}
                             onLeave={this.onLeaveHandle}
                             required={required}
                             hasError={!!validationFeedback}
                             datasource={this.props.Datasource}
                             dropdownValue={this.props.dropdownValue}
+                            noneSelectedText={this.props.noneSelectedText}
                         />
                         <Alert id={this.props.id + "-error"}>{validationFeedback}</Alert>
                     </Fragment>
