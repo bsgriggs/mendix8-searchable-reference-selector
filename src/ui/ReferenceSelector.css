@@ -67,3 +67,6 @@ Place your custom CSS here
 .widget-reference-selector #dropdown ul li:hover{
     background-color: #D7D7D7;
 }
+.widget-reference-selector #dropdown ul .selected{
+    background-color: #e7e7e7;
+}

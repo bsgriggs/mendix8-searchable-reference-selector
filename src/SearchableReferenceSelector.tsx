@@ -1,6 +1,5 @@
 import { Component, Fragment, ReactNode, createElement } from "react";
 import { hot } from "react-hot-loader/root";
-
 import { ReferenceSelector } from "./components/ReferenceSelector";
 import { SearchableReferenceSelectorContainerProps } from "../typings/SearchableReferenceSelectorProps";
 import { Alert } from "./components/Alert";
@@ -16,7 +15,7 @@ class SearchableReferenceSelector extends Component<SearchableReferenceSelectorC
 
     render(): ReactNode {
         const value = this.props.current.value ? this.props.current.value : this.props.noneSelectedText;
-        const validationFeedback = this.props.current.validation;
+        const validationFeedback = this.props.returnJSON.validation;
         const required = !!(this.props.requiredMessage && this.props.requiredMessage.value);
 
         return (

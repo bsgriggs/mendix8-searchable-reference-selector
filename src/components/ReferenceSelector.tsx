@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createElement, CSSProperties, Fragment, useState } from "react";
 import { ListValue, ListAttributeValue } from "mendix";
 import classNames from "classnames";
@@ -111,6 +110,7 @@ export const ReferenceSelector = (props: ReferenceSelectorProps) => {
                                         if (value !== undefined) {
                                             return (
                                                 <li
+                                                    className={value === valueState ? ".selected" : ""}
                                                     key={key}
                                                     onClick={() => {
                                                         onSelect(value);
@@ -129,6 +129,7 @@ export const ReferenceSelector = (props: ReferenceSelectorProps) => {
                                     if (value !== undefined) {
                                         return (
                                             <li
+                                                className={value === valueState ? "selected" : ""}
                                                 key={key}
                                                 onClick={() => {
                                                     onSelect(value);
