@@ -1,6 +1,6 @@
 ## SearchableReferenceSelector
 
-Mendix reference selector with a search bar and a clear button.  
+Mendix reference selector with a search bar and a clear button by Benjamin Griggs.  
 This is the Mendix 8 version of https://github.com/bsgriggs/mendix9-searchable-reference-selector. If you are using
 Mendix 9, please use the widget there.
 
@@ -24,7 +24,7 @@ Mendix 9, please use the widget there.
    **AND** a parameter from the Selectable Objects. This Microflow or Nanoflow should set the association using a Change
    Object action.
 
-Optionals:
+Optional:
 
 -   If you want the user to have the abilty to select nothing, then configure the "On Select Empty" as a Microflow or
     Nanoflow that changes the data view's assocation to empty. Decide on a "No Selection Text".
