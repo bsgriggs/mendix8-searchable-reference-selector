@@ -1,35 +1,43 @@
 ## SearchableReferenceSelector
-[A Reference Selector with a search bar at the top]
+
+Mendix reference selector with a search bar and a clear button.  
+This is the Mendix 8 version of https://github.com/bsgriggs/mendix9-searchable-reference-selector. If you are using
+Mendix 9, please use the widget there.
 
 ## Features
-[feature highlights]
+
+-   Dropdown selection with any objects you want
+-   Selecting an option triggers any Mendix Action you'd like
+-   Option to allow the user to select empty or not
+
+## Limitation
+
+-   Validation must be handled by the save action of your form or in the "On Select Association"
 
 ## Usage
-1) Add a non-persistent entity with one string attribute and full read-write Access rules (note: this entity can be reused on all pages using this widget)
-2) Add a JSON structure with: { 'attribute': 'string' }
-3) Add an Import mapping using the JSON structure to map 'attribute' to the string attribute in step 1
 
-4) On the entity that will be the page parameter, add an unlimited string attribute: JSON
-5) Create an On Change Microflow that will:
-    - take the page parameter
-    - create a string variable with the page parameter’s JSON attribute
-    - use the string variable on the Import mapping, check "Store in variable"
-    - use the variable from the Import mapping to retrieve the selected object from the database (i.e. [Attribute = $NonPersistentEntity/Attribute])
-    - change the page parameter object and set the association to the object retrieved from database
-    - give the On Change Microflow appropriate permissions
+1. Add the widget inside a data view
+2. Configure the "Selectable Objects" as the list object you want to appear in the dropdown
+3. Set the "Attribute to Display" as the attribute on the Selectable Objects you want to display in the dropdown
+4. Select the "Current Value" as the association from the data view to the same attribute as the Attribute to Display
+5. On the Actions tab, set "On Select Assocation" as a Microflow or Nanoflow that takes a parameter from the data view
+   **AND** a parameter from the Selectable Objects. This Microflow or Nanoflow should set the association using a Change
+   Object action.
 
-6) Add the widget to your page
-7) Set the Data source to your appropriate object (The objects to be selectable)
-8) Set the Attribute to Display as the attribute to be displayed in the dropdown
-9) Set the Return JSON to the Page Parameter’s JSON attribute
-10) Set Current Value to the same attribute in step 8 but across the appropriate association
-11) In the events tab, set the On Change event to use the microflow created in step 5
+Optionals:
+
+-   If you want the user to have the abilty to select nothing, then configure the "On Select Empty" as a Microflow or
+    Nanoflow that changes the data view's assocation to empty. Decide on a "No Selection Text".
+-   If you do not want the user to be able to select nothing, then set "Allow Empty Selection" as No.
 
 ## Demo project
-zip file in directory
+
+https://searchablereferenceselectortest-sandbox.mxapps.io
 
 ## Issues, suggestions and feature requests
-[link to GitHub issues]
+
+https://github.com/bsgriggs/mendix-SearchableReferenceSelector/issues
 
 ## Development and contribution
-[specify contribute]
+
+Benjamin Griggs
