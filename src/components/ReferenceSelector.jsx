@@ -1,62 +1,66 @@
+import { createElement, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
-import { Fragment, createElement, useState } from "react";
 
-export const ReferenceSelector = props => {
-    const {
-        classProp,
-        style,
-        tabIndex,
-        id,
-        value,
-        onLeave,
-        datasource,
-        dropdownValue,
-        hasError,
-        required,
-        noneSelectedText
-    } = props;
+export default function ReferenceSelector({
+    tabIndex,
+    className,
+    style,
+    selectableObjects,
+    displayAttribute,
+    currentValue,
+    onSelectAssociation,
+    onSelectEmpty,
+    noneSelectedText,
+    allowEmptySelection
+}) {
     const [showPopup, setShowPopup] = useState(false);
     const [searchText, setSearchText] = useState("");
-    const [valueState, setValueState] = useState(value);
+    const ref = useRef(null);
 
-    const className = classNames("form-control", classProp);
-    const labelledby = `${id}-label` + (hasError ? ` ${id}-error` : "");
+    useEffect(() => {
+        if (showPopup) {
+            const handleClickOutside = event => {
+                if (ref.current && !ref.current.contains(event.target)) {
+                    toggleDropdown();
+                }
+            };
+            document.addEventListener("click", handleClickOutside, true);
+            return () => {
+                document.removeEventListener("click", handleClickOutside, true);
+            };
+        }
+    }, [!showPopup]);
 
     function toggleDropdown() {
         // show the dropdown popup and trigger the search
         setShowPopup(!showPopup);
     }
 
-    function onSelect(text) {
-        if (datasource.items !== undefined) {
+    function onSelectHandler(selectedObj) {
+        if (selectedObj !== undefined && onSelectAssociation !== undefined) {
+            const mxaction = onSelectAssociation(selectedObj);
+            mxaction.execute();
             toggleDropdown();
-            // Hand the selected value back up
-            onLeave(text, text !== valueState);
-            setValueState(text);
+        } else if (onSelectEmpty !== undefined && allowEmptySelection) {
+            onSelectEmpty.execute();
+            toggleDropdown();
+        } else {
+            toggleDropdown();
         }
     }
 
     return (
-        <div className="widget-reference-selector">
-            <button
-                id={id}
-                className={className}
-                style={style}
-                tabIndex={tabIndex}
-                onClick={toggleDropdown}
-                aria-labelledby={labelledby}
-                aria-invalid={hasError}
-                aria-required={required}
-            >
-                {valueState}
+        <div ref={ref} className={classNames("widget-reference-selector", className)} style={style}>
+            <button tabIndex={tabIndex} className="form-control" onClick={toggleDropdown}>
+                {currentValue}
             </button>
             {showPopup && (
-                <div id="dropdown">
+                <div className="dropdown">
                     <div className="searchBar">
                         <input
                             type="text"
                             placeholder="Search"
-                            className={className}
+                            className="form-control"
                             onChange={event => {
                                 setSearchText(event.target.value);
                             }}
@@ -71,59 +75,60 @@ export const ReferenceSelector = props => {
                             Reset
                         </button>
                     </div>
-                    <hr />
-                    {datasource.items !== undefined && (
+                    {selectableObjects.items !== undefined && (
                         <ul>
-                            <li
-                                onClick={() => {
-                                    onSelect(noneSelectedText);
-                                }}
-                            >
-                                {noneSelectedText ? noneSelectedText : <Fragment>&nbsp;</Fragment>}
-                            </li>
+                            {allowEmptySelection && (
+                                <li
+                                    onClick={() => {
+                                        onSelectHandler(undefined);
+                                    }}
+                                >
+                                    {noneSelectedText ? noneSelectedText : <div>&nbsp;</div>}
+                                </li>
+                            )}
                             {searchText.trim().length > 0 &&
-                                datasource.items
-                                    .filter(text =>
-                                        dropdownValue(text)
-                                            .value?.toString()
-                                            .toLowerCase()
-                                            .includes(searchText.toLowerCase())
-                                    )
+                                selectableObjects.items
+                                    .filter(obj => {
+                                        const text = displayAttribute(obj).value;
+                                        return (
+                                            text !== undefined && text.toLowerCase().includes(searchText.toLowerCase())
+                                        );
+                                    })
                                     .map((obj, key) => {
-                                        const text = dropdownValue(obj).value;
+                                        const text = displayAttribute(obj).value;
                                         if (text !== undefined) {
                                             return (
                                                 <li
-                                                    className={text === valueState ? ".selected" : ""}
+                                                    className={text === currentValue ? ".selected" : ""}
                                                     key={key}
                                                     onClick={() => {
-                                                        onSelect(text);
+                                                        onSelectHandler(obj);
                                                     }}
                                                 >
                                                     {text}
                                                 </li>
                                             );
                                         } else {
-                                            return <li></li>;
+                                            return <li>&nbsp;</li>;
                                         }
                                     })}
                             {searchText.trim().length === 0 &&
-                                datasource.items.map((obj, key) => {
-                                    const text = dropdownValue(obj).value;
+                                selectableObjects.items.map((obj, key) => {
+                                    const text = displayAttribute(obj).value;
                                     if (text !== undefined) {
                                         return (
                                             <li
-                                                className={text === valueState ? "selected" : ""}
+                                                className={text === currentValue ? "selected" : ""}
                                                 key={key}
                                                 onClick={() => {
-                                                    onSelect(text);
+                                                    onSelectHandler(obj);
                                                 }}
                                             >
                                                 {text}
                                             </li>
                                         );
                                     } else {
-                                        return <li></li>;
+                                        return <li>&nbsp;</li>;
                                     }
                                 })}
                         </ul>
@@ -132,4 +137,4 @@ export const ReferenceSelector = props => {
             )}
         </div>
     );
-};
+}

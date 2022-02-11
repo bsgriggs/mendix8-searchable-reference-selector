@@ -1,70 +1,39 @@
-/* eslint-disable sort-imports */
-import { Alert } from "./components/Alert";
-import { Component, Fragment, createElement } from "react";
-import { hot } from "react-hot-loader/root";
-import { ReferenceSelector } from "./components/ReferenceSelector";
+import { Component, createElement } from "react";
+import ReferenceSelector from "./components/ReferenceSelector";
+
 import "./ui/ReferenceSelector.css";
 
 class SearchableReferenceSelector extends Component {
-    onLeaveHandle = this.onLeave.bind(this);
-
-    componentDidMount() {
-        this.props.returnJSON.setValidator(this.validator.bind(this));
-    }
-
     render() {
-        const value = this.props.current.value ? this.props.current.value : this.props.noneSelectedText;
-        const validationFeedback = this.props.returnJSON.validation;
-        const required = !!(this.props.requiredMessage && this.props.requiredMessage.value);
-
-        return (
-            <Fragment>
-                {(this.props.current.status === "available" || this.props.current.status === "unavailable") && (
-                    <Fragment>
-                        <ReferenceSelector
-                            id={this.props.id}
-                            value={value}
-                            style={this.props.style}
-                            classProp={this.props.class}
-                            tabIndex={this.props.tabIndex}
-                            onLeave={this.onLeaveHandle}
-                            required={required}
-                            hasError={!!validationFeedback}
-                            datasource={this.props.Datasource}
-                            dropdownValue={this.props.dropdownValue}
-                            noneSelectedText={this.props.noneSelectedText}
-                        />
-                        <Alert id={this.props.id + "-error"}>{validationFeedback}</Alert>
-                    </Fragment>
-                )}
-            </Fragment>
-        );
-    }
-
-    validator(value) {
-        const { requiredMessage } = this.props;
-
-        if (requiredMessage && requiredMessage.value && !value) {
-            return requiredMessage.value;
-        }
-        return null;
-    }
-
-    onLeave(value, isChanged) {
-        if (!isChanged) {
-            return;
-        }
-        console.log(this.props.requiredMessage);
-        if (value !== "" || this.props.requiredMessage.value === "") {
-            const returnJSON = { attribute: value };
-            this.props.returnJSON.setValue(JSON.stringify(returnJSON));
+        if (this.props.currentValue.status !== "loading" && this.props.selectableObjects.status !== "loading") {
+            const emptyText =
+                this.props.noneSelectedText !== undefined && this.props.noneSelectedText.value !== undefined
+                    ? this.props.noneSelectedText.value
+                    : "";
+            return (
+                <ReferenceSelector
+                    key={this.props.name}
+                    tabIndex={this.props.tabIndex ? this.props.tabIndex : -1}
+                    className={this.props.class}
+                    name={this.props.name}
+                    style={this.props.style}
+                    currentValue={
+                        this.props.currentValue && this.props.currentValue.value
+                            ? this.props.currentValue.value
+                            : emptyText
+                    }
+                    selectableObjects={this.props.selectableObjects}
+                    displayAttribute={this.props.displayAttribute}
+                    noneSelectedText={emptyText}
+                    allowEmptySelection={this.props.allowEmptySelection}
+                    onSelectAssociation={this.props.onSelectAssociation}
+                    onSelectEmpty={this.props.onSelectEmpty}
+                />
+            );
         } else {
-            this.props.returnJSON.setValue();
-        }
-        if (this.props.onChangeAction !== undefined && this.props.onChangeAction.canExecute) {
-            this.props.onChangeAction.execute();
+            return <div></div>;
         }
     }
 }
 
-export default hot(SearchableReferenceSelector);
+export default SearchableReferenceSelector;

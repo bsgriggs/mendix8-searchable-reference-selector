@@ -1,10 +1,9 @@
 import { Component, createElement } from "react";
-// import { ReferenceSelector } from "./components/ReferenceSelector";
-// import { SearchableReferenceSelectorPreviewProps } from "../typings/SearchableReferenceSelectorProps";
+import ReferenceSelector from "./components/ReferenceSelector";
 
 export class preview extends Component {
     render() {
-        return <div />;
+        return <ReferenceSelector />;
     }
 }
 
