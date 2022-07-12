@@ -2,7 +2,7 @@
 /**
  * TODO: Include tests for methods
  */
-import { Properties, Property, PropertyGroup } from "../SearchableReferenceSelectorMxNine.editorConfig";
+import { Properties, Property, PropertyGroup } from "../SearchableReferenceSelectorMxEight.editorConfig";
 
 declare type Option<T> = T | undefined;
 

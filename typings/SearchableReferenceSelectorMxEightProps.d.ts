@@ -15,10 +15,8 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
-    id: string;
     placeholder: DynamicValue<string>;
     isClearable: boolean;
-    maxItems: DynamicValue<BigJs.Big>;
     filterDelay: number;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;
@@ -27,8 +25,8 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     noResultsText: DynamicValue<string>;
     moreResultsText: DynamicValue<string>;
     selectableObjects: ListValue;
-    displayAttribute: ListAttributeValue<string>;
-    currentValue: EditableValue<string>;
+    displayAttribute: ListAttributeValue<string | BigJs.Big | any | Date>;
+    currentValue: EditableValue<string | BigJs.Big | any | Date>;
     selectableAttribute?: ListAttributeValue<boolean>;
     onSelectAssociation?: ListActionValue;
     allowEmptySelection: boolean;
@@ -40,7 +38,6 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     style: string;
     placeholder: string;
     isClearable: boolean;
-    maxItems: string;
     filterDelay: number | null;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;

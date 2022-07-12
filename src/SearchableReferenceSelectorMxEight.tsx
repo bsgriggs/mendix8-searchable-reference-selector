@@ -1,39 +1,91 @@
-import { Component, createElement } from "react";
+import { createElement, useState, useEffect } from "react";
+import { SearchableReferenceSelectorMxEightContainerProps } from "../typings/SearchableReferenceSelectorMxEightProps";
+import { ObjectItem, ValueStatus } from "mendix";
+import { Alert } from "./components/Alert";
 import ReferenceSelector from "./components/ReferenceSelector";
+import LoadingSelector from "./components/LoadingSelector";
 
 import "./ui/ReferenceSelector.css";
 
-class SearchableReferenceSelector extends Component {
-    render() {
-        if (this.props.currentValue.status !== "loading" && this.props.selectableObjects.status !== "loading") {
-            const emptyText =
-                this.props.noneSelectedText !== undefined && this.props.noneSelectedText.value !== undefined
-                    ? this.props.noneSelectedText.value
-                    : "";
-            return (
+const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightContainerProps): JSX.Element => {
+    const [mxFilter, setMxFilter] = useState<string>("");
+    const [selectableObjectList, setSelectableObjectList] = useState<ObjectItem[]>([]);
+
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            // filter the selectable objects when the search text changes
+            if (mxFilter !== undefined && mxFilter.trim().length > 0 && props.selectableObjects.items) {
+                const searchTextTrimmed = mxFilter.trim();
+                setSelectableObjectList(
+                    props.selectableObjects.items.filter(obj => {
+                        const text = props.displayAttribute(obj).value;
+                        return text !== undefined && text.toLowerCase().includes(searchTextTrimmed.toLowerCase());
+                    })
+                );
+            } else {
+                setSelectableObjectList(props.selectableObjects.items || []);
+            }
+        }, props.filterDelay);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [mxFilter, props.selectableObjects]);
+
+    const currentValueObj =
+        props.currentValue.value !== undefined
+            ? selectableObjectList.find(obj => props.displayAttribute(obj).value === props.currentValue.value)
+            : undefined;
+
+    if (
+        props.selectableObjects.status === ValueStatus.Available &&
+        props.placeholder.status === ValueStatus.Available &&
+        props.maxMenuHeight.status === ValueStatus.Available &&
+        props.currentValue.status !== ValueStatus.Loading
+    ) {
+        const onSelectReferenceHandler = (selectedObj: ObjectItem | undefined): void => {
+            if (selectedObj !== undefined && props.onSelectAssociation !== undefined) {
+                const mxaction = props.onSelectAssociation(selectedObj);
+                mxaction.execute();
+            } else if (props.onSelectEmpty !== undefined && props.allowEmptySelection) {
+                props.onSelectEmpty.execute();
+            }
+        };
+
+        return (
+            <div className="srs">
                 <ReferenceSelector
-                    key={this.props.name}
-                    tabIndex={this.props.tabIndex ? this.props.tabIndex : -1}
-                    className={this.props.class}
-                    name={this.props.name}
-                    style={this.props.style}
-                    currentValue={
-                        this.props.currentValue && this.props.currentValue.value
-                            ? this.props.currentValue.value
-                            : emptyText
+                    name={props.name}
+                    tabIndex={props.tabIndex}
+                    currentValue={currentValueObj}
+                    isClearable={props.isClearable}
+                    onSelectAssociation={(newAssociation: ObjectItem | undefined) =>
+                        onSelectReferenceHandler(newAssociation as ObjectItem & ObjectItem[])
                     }
-                    selectableObjects={this.props.selectableObjects}
-                    displayAttribute={this.props.displayAttribute}
-                    noneSelectedText={emptyText}
-                    allowEmptySelection={this.props.allowEmptySelection}
-                    onSelectAssociation={this.props.onSelectAssociation}
-                    onSelectEmpty={this.props.onSelectEmpty}
+                    selectableObjects={selectableObjectList || []}
+                    placeholder={props.placeholder.value}
+                    maxHeight={props.maxMenuHeight.value}
+                    noResultsText={props.noResultsText.value}
+                    displayAttribute={props.displayAttribute}
+                    optionTextType={props.optionTextType}
+                    selectableAttribute={props.selectableAttribute}
+                    optionCustomContent={props.optionCustomContent}
+                    mxFilter={mxFilter}
+                    setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
+                    moreResultsText={props.selectableObjects.hasMoreItems ? props.moreResultsText.value : undefined}
+                    optionsStyle={props.optionsStyle}
                 />
-            );
-        } else {
-            return <div></div>;
-        }
+                {props.currentValue.validation && <Alert>{props.currentValue.validation}</Alert>}
+            </div>
+        );
+    } else {
+        return (
+            <LoadingSelector
+                name={props.name}
+                tabIndex={props.tabIndex}
+                placeholder={props.placeholder.value}
+                isClearable={props.isClearable}
+            />
+        );
     }
-}
+};
 
 export default SearchableReferenceSelector;
