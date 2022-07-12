@@ -1,16 +1,16 @@
 {
-  "name": "searchablereferenceselector",
-  "widgetName": "SearchableReferenceSelector",
-  "version": "1.0.0",
-  "description": "A Reference Selector with a search bar at the top",
-  "copyright": "2021 Avertra",
+  "name": "searchablereferenceselectormxeight",
+  "widgetName": "SearchableReferenceSelectorMxEight",
+  "version": "1.1.0",
+  "description": "A Reference Selector with a search bar",
+  "copyright": "2022 Mendix",
   "author": "Benjamin Griggs",
   "config": {
     "projectPath": "../..//",
     "mendixHost": "http://localhost:8080",
     "developmentPort": "3000"
   },
-  "packagePath": "avertra",
+  "packagePath": "mendix",
   "scripts": {
     "start": "pluggable-widgets-tools start:server --open",
     "dev": "pluggable-widgets-tools start:web",
@@ -20,9 +20,12 @@
     "prerelease": "npm run lint",
     "release": "pluggable-widgets-tools release:web"
   },
-  "license": "",
+  "license": "MIT",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^8.14.0"
+    "@mendix/pluggable-widgets-tools": "^8.14.0",
+    "@types/big.js": "^6.0.2",
+    "@types/react": "~17.0.1",
+    "@types/react-dom": "~17.0.1"
   },
   "dependencies": {
     "classnames": "^2.2.6"

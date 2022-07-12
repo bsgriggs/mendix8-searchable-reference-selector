@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <package xmlns="http://www.mendix.com/package/1.0/">
-    <clientModule name="SearchableReferenceSelector" version="1.0.0" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <clientModule name="SearchableReferenceSelectorMxEight" version="1.1.0" xmlns="http://www.mendix.com/clientModule/1.0/">
         <widgetFiles>
-            <widgetFile path="SearchableReferenceSelector.xml"/>
+            <widgetFile path="SearchableReferenceSelectorMxEight.xml"/>
         </widgetFiles>
         <files>
-            <file path="avertra.searchablereferenceselector"/>
+            <file path="mendix.searchablereferenceselectormxeight"/>
         </files>
     </clientModule>
 </package>
