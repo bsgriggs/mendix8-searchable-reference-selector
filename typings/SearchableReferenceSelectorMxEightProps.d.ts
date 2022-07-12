@@ -24,8 +24,8 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     maxMenuHeight: DynamicValue<string>;
     noResultsText: DynamicValue<string>;
     selectableObjects: ListValue;
-    displayAttribute: ListAttributeValue<string | BigJs.Big | any | Date>;
-    currentValue: EditableValue<string | BigJs.Big | any | Date>;
+    displayAttribute: ListAttributeValue<string | BigJs.Big>;
+    currentValue: EditableValue<string | BigJs.Big>;
     selectableAttribute?: ListAttributeValue<boolean>;
     onSelectAssociation?: ListActionValue;
     allowEmptySelection: boolean;

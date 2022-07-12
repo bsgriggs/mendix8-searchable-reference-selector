@@ -71,8 +71,6 @@
                     <attributeType name="Integer" />
                     <attributeType name="Decimal" />
                     <attributeType name="Long" />
-                    <attributeType name="Float" />
-                    <attributeType name="DateTime" />
                 </attributeTypes>
             </property>
             <property key="currentValue" type="attribute" required="true">
@@ -84,8 +82,6 @@
                     <attributeType name="Integer" />
                     <attributeType name="Decimal" />
                     <attributeType name="Long" />
-                    <attributeType name="Float" />
-                    <attributeType name="DateTime" />
                 </attributeTypes>
             </property>
             <property key="selectableAttribute" type="attribute" required="false" dataSource="selectableObjects">
