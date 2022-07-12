@@ -15,7 +15,6 @@ interface OptionsMenuProps {
     maxHeight?: string;
     optionTextType: OptionTextTypeEnum;
     optionCustomContent?: ListWidgetValue;
-    moreResultsText?: string;
     optionsStyle: OptionsStyleEnum;
 }
 
@@ -87,11 +86,6 @@ const OptionsMenu = (props: OptionsMenuProps): JSX.Element => {
                             </div>
                         );
                     })}
-                    {props.moreResultsText && (
-                        <div className="mx-text srs-infooption" role="option">
-                            {props.moreResultsText}
-                        </div>
-                    )}
                 </React.Fragment>
             )}
             {props.selectableObjects === undefined ||

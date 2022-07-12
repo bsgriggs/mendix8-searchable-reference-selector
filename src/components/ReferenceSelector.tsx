@@ -201,7 +201,6 @@ const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
                     noResultsText={props.noResultsText}
                     optionTextType={props.optionTextType}
                     optionCustomContent={props.optionCustomContent}
-                    moreResultsText={props.moreResultsText}
                     optionsStyle={props.optionsStyle}
                 />
             )}

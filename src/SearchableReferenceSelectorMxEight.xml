@@ -56,11 +56,6 @@
                 <description>Message shown if no results were found</description>
                 <returnType type="String" />
             </property>
-            <property key="moreResultsText" type="expression" defaultValue="'Search for more results'">
-                <caption>More Results Text</caption>
-                <description>Text shown if the there are more items than the max items being displayed.</description>
-                <returnType type="String" />
-            </property>
         </propertyGroup>
         <propertyGroup caption="Data Source">
             <property key="selectableObjects" type="datasource" isList="true" required="true">

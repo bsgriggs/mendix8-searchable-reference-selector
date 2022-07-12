@@ -23,7 +23,6 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     optionCustomContent?: ListWidgetValue;
     maxMenuHeight: DynamicValue<string>;
     noResultsText: DynamicValue<string>;
-    moreResultsText: DynamicValue<string>;
     selectableObjects: ListValue;
     displayAttribute: ListAttributeValue<string | BigJs.Big | any | Date>;
     currentValue: EditableValue<string | BigJs.Big | any | Date>;
@@ -44,7 +43,6 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     optionCustomContent: { widgetCount: number; renderer: ComponentType };
     maxMenuHeight: string;
     noResultsText: string;
-    moreResultsText: string;
     selectableObjects: {} | null;
     displayAttribute: string;
     currentValue: string;

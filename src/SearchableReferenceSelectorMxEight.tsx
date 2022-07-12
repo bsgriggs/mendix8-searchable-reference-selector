@@ -70,7 +70,6 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
                     optionCustomContent={props.optionCustomContent}
                     mxFilter={mxFilter}
                     setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
-                    moreResultsText={props.selectableObjects.hasMoreItems ? props.moreResultsText.value : undefined}
                     optionsStyle={props.optionsStyle}
                 />
                 {props.currentValue.validation && <Alert>{props.currentValue.validation}</Alert>}
