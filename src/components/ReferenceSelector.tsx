@@ -123,10 +123,7 @@ const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
         } else if (keyPressed === "Enter") {
             if (focusedObjIndex > -1) {
                 const currentSelectedObj = props.selectableObjects[focusedObjIndex];
-                if (
-                    props.selectableAttribute === undefined ||
-                    props.selectableAttribute(currentSelectedObj).value
-                ) {
+                if (props.selectableAttribute === undefined || props.selectableAttribute(currentSelectedObj).value) {
                     onSelectHandler(props.selectableObjects[focusedObjIndex], true);
                 }
             }

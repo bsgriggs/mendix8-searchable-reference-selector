@@ -48,7 +48,9 @@ const OptionsMenu = (props: OptionsMenuProps): JSX.Element => {
             case "custom":
                 if (props.optionCustomContent) {
                     return <span className="srs-text">{props.optionCustomContent(objectItem)}</span>;
-                } else return <span className="srs-text">{"No content found"}</span>;
+                } else {
+                    return <span className="srs-text">{"No content found"}</span>;
+                }
         }
     };
 
@@ -74,9 +76,7 @@ const OptionsMenu = (props: OptionsMenuProps): JSX.Element => {
                                     isSelected={isSelected}
                                     isFocused={focusMode === focusModeEnum.arrow ? isFocused : false}
                                     isSelectable={
-                                        props.selectableAttribute
-                                            ? props.selectableAttribute(obj).value === true
-                                            : true
+                                        props.selectableAttribute ? props.selectableAttribute(obj).value === true : true
                                     }
                                     onSelect={() => onSelectHandler(obj)}
                                     focusMode={focusMode}

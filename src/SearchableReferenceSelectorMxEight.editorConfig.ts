@@ -83,7 +83,7 @@ export function check(_values: SearchableReferenceSelectorMxEightPreviewProps): 
         });
     }
 
-    if(_values.onSelectAssociation === null) {
+    if (_values.onSelectAssociation === null) {
         errors.push({
             property: `onSelectAssociation`,
             message: `On Select Association is required`,
@@ -91,7 +91,7 @@ export function check(_values: SearchableReferenceSelectorMxEightPreviewProps): 
         });
     }
 
-    if(_values.allowEmptySelection && _values.onSelectEmpty === null){
+    if (_values.allowEmptySelection && _values.onSelectEmpty === null) {
         errors.push({
             property: `onSelectEmpty`,
             message: `On Select Empty is required`,
