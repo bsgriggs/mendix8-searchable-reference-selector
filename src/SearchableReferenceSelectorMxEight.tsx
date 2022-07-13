@@ -18,7 +18,7 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
                 const searchTextTrimmed = mxFilter.trim();
                 setSelectableObjectList(
                     props.selectableObjects.items.filter(obj => {
-                        const text = props.displayAttribute(obj).value;
+                        const text = props.displayAttribute(obj).value.toString();
                         return text !== undefined && text.toLowerCase().includes(searchTextTrimmed.toLowerCase());
                     })
                 );
@@ -32,7 +32,9 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
 
     const currentValueObj =
         props.currentValue.value !== undefined
-            ? selectableObjectList.find(obj => props.displayAttribute(obj).value === props.currentValue.value)
+            ? selectableObjectList.find(
+                  obj => props.displayAttribute(obj).value.toString() === props.currentValue.value.toString()
+              )
             : undefined;
 
     if (

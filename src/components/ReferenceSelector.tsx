@@ -70,13 +70,15 @@ const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
         if (props.currentValue !== undefined) {
             switch (props.optionTextType) {
                 case "text":
-                    return <span className="srs-text">{props.displayAttribute(props.currentValue).value}</span>;
+                    return (
+                        <span className="srs-text">{props.displayAttribute(props.currentValue).value?.toString()}</span>
+                    );
                 case "html":
                     return (
                         <span
                             className="srs-text"
                             dangerouslySetInnerHTML={{
-                                __html: `${props.displayAttribute(props.currentValue).value}`
+                                __html: `${props.displayAttribute(props.currentValue).value?.toString()}`
                             }}
                         ></span>
                     );
