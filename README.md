@@ -1,13 +1,14 @@
-## SearchableReferenceSelector
+## Searchable Reference Selector for Mendix 8.17 - 9.12
 
 Mendix reference selector with a search bar and a clear button by Benjamin Griggs.  
 
-This is the Mendix 8 version. **If you are using Mendix 9.13 OR ABOVE**, please use the following widget.  
+**If you are using Mendix 9.13 OR ABOVE**, please use the following widget.  
 https://github.com/bsgriggs/mendix9-searchable-reference-selector
 
 | Dropdown  | List On Page |
 | ------------- | ------------- |
-| ![Dropdown](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/dropdown.png)   | ![List](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/listOnPage.png)   |
+| ![Dropdown](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/dropdown.png)   | ![List](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/listOnPage.png)   |  
+*Note: checkboxes or background color selection are independent of Dropdown / List On Page. Both settings can use either*
 
 ## Features
 
@@ -34,8 +35,6 @@ The following is an example for using the widget on a page with a Transaction to
 ![General](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/General.png)  
 
 ![Style](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/Style.png)  
-
-
 
 ![Data Source](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/DataSource.png)  
 
