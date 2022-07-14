@@ -1,14 +1,18 @@
 ## SearchableReferenceSelector
 
 Mendix reference selector with a search bar and a clear button by Benjamin Griggs.  
-This is the Mendix 8 version of https://github.com/bsgriggs/mendix9-searchable-reference-selector. If you are using
-Mendix 9, please use the widget there.
+
+This is the Mendix 8 version. **If you are using Mendix 9.13 OR ABOVE**, please use the following widget.  
+https://github.com/bsgriggs/mendix9-searchable-reference-selector
 
 ## Features
 
--   Dropdown selection with any objects you want
--   Selecting an option triggers any Mendix Action you'd like
+-   Dropdown or list selection with any objects you want
+-   Selecting an option triggers a Mendix Action
 -   Option to allow the user to select empty or not
+-   Option to render options as checkboxes
+-   Option to render attribute text, HTML content, or Mendix widget 
+-   Ability to marked specific options as un-selectable
 
 ## Limitation
 
