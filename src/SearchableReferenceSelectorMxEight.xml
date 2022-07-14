@@ -18,10 +18,6 @@
                     <caption>Searchable?</caption>
                     <description>When true, the user will be able to search with a textbox</description>
                 </property>
-                <property key="isClearable" type="boolean" defaultValue="true">
-                    <caption>Clearable?</caption>
-                    <description>When true, the dropdown will have an 'X' icon to clear the value</description>
-                </property>
                 <property key="filterDelay" type="integer" defaultValue="300" required="true">
                     <caption>Filter Delay</caption>
                     <description>How many milliseconds after the user has stopped typing to apply the filter.</description>
@@ -109,9 +105,9 @@
                 <caption>On Select Association</caption>
                 <description>This action is required. It should be a Microflow or Nanoflow that accepts an object of the Data Source. Have the action set the association with the value selected by the widget.</description>
             </property>
-            <property key="allowEmptySelection" type="boolean" defaultValue="true">
-                <caption>Allow Empty Selection?</caption>
-                <description>When true, the dropdown will have the first option as the No Selection Text.</description>
+            <property key="isClearable" type="boolean" defaultValue="true">
+                <caption>Clearable?</caption>
+                <description>When true, the dropdown will have an 'X' icon to clear the value</description>
             </property>
             <property key="onSelectEmpty" type="action" required="true">
                 <caption>On Select Empty</caption>

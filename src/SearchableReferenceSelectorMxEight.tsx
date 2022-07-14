@@ -48,7 +48,7 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
             if (selectedObj !== undefined && props.onSelectAssociation !== undefined) {
                 const mxaction = props.onSelectAssociation(selectedObj);
                 mxaction.execute();
-            } else if (props.onSelectEmpty !== undefined && props.allowEmptySelection) {
+            } else if (props.onSelectEmpty !== undefined && props.isClearable) {
                 props.onSelectEmpty.execute();
             }
         };

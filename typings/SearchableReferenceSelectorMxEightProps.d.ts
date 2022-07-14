@@ -19,7 +19,6 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     tabIndex?: number;
     placeholder: DynamicValue<string>;
     isSearchable: boolean;
-    isClearable: boolean;
     filterDelay: number;
     selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
@@ -32,7 +31,7 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     currentValue: EditableValue<string | BigJs.Big>;
     selectableAttribute?: ListAttributeValue<boolean>;
     onSelectAssociation?: ListActionValue;
-    allowEmptySelection: boolean;
+    isClearable: boolean;
     onSelectEmpty?: ActionValue;
 }
 
@@ -41,7 +40,6 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     style: string;
     placeholder: string;
     isSearchable: boolean;
-    isClearable: boolean;
     filterDelay: number | null;
     selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
@@ -54,6 +52,6 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     currentValue: string;
     selectableAttribute: string;
     onSelectAssociation: {} | null;
-    allowEmptySelection: boolean;
+    isClearable: boolean;
     onSelectEmpty: {} | null;
 }

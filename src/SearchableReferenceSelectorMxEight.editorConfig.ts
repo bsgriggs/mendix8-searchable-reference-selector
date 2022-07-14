@@ -47,7 +47,7 @@ export function getProperties(
         hidePropertiesIn(defaultProperties, _values, ["optionCustomContent"]);
     }
 
-    if (_values.allowEmptySelection === false) {
+    if (_values.isClearable === false) {
         hidePropertiesIn(defaultProperties, _values, ["onSelectEmpty"]);
     }
 
@@ -103,7 +103,7 @@ export function check(_values: SearchableReferenceSelectorMxEightPreviewProps): 
         });
     }
 
-    if (_values.allowEmptySelection && _values.onSelectEmpty === null) {
+    if (_values.isClearable && _values.onSelectEmpty === null) {
         errors.push({
             property: `onSelectEmpty`,
             message: `On Select Empty is required`,
