@@ -17,6 +17,7 @@ https://github.com/bsgriggs/mendix9-searchable-reference-selector
 ## Limitation
 
 -   Validation must be handled by the save action of your form or in the "On Select Association"
+-   Objects are filtered by the browser. If you encounter performance issues, you must limit the selectable objects inside Mendix.
 
 ## Usage
 
@@ -36,11 +37,11 @@ Optional:
 
 ## Demo project
 
-https://searchablereferenceselectortest-sandbox.mxapps.io
+https://srsmx8-sandbox.mxapps.io/index.html?profile=Responsive
 
 ## Issues, suggestions and feature requests
 
-https://github.com/bsgriggs/mendix-SearchableReferenceSelector/issues
+https://github.com/bsgriggs/mendix8-searchable-reference-selector/issues
 
 ## Development and contribution
 
