@@ -1,7 +1,7 @@
 import React, { createElement, ReactNode, useEffect, useRef, useState } from "react";
 import { ObjectItem, ListAttributeValue, ListWidgetValue } from "mendix";
 import Option, { focusModeEnum } from "./Option";
-import { OptionTextTypeEnum, OptionsStyleEnum } from "typings/SearchableReferenceSelectorMxEightProps";
+import { OptionTextTypeEnum, OptionsStyleEnum, SelectStyleEnum } from "typings/SearchableReferenceSelectorMxEightProps";
 
 interface OptionsMenuProps {
     selectableObjects: ObjectItem[];
@@ -16,6 +16,7 @@ interface OptionsMenuProps {
     optionTextType: OptionTextTypeEnum;
     optionCustomContent?: ListWidgetValue;
     optionsStyle: OptionsStyleEnum;
+    selectStyle: SelectStyleEnum;
 }
 
 const OptionsMenu = (props: OptionsMenuProps): JSX.Element => {
@@ -55,10 +56,21 @@ const OptionsMenu = (props: OptionsMenuProps): JSX.Element => {
         }
     };
 
+
+    const OptionsMenuStyle = (): React.CSSProperties => {
+        if (props.selectStyle === "dropdown") {
+            return {
+                maxHeight: props.maxHeight ? props.maxHeight : "12.5em"
+            };
+        } else {
+            return {};
+        }
+    };
+
     return (
         <div
-            className="srs-dropdown"
-            style={{ maxHeight: props.maxHeight ? props.maxHeight : "12.5em" }}
+            className={`srs-${props.selectStyle}`}
+            style={OptionsMenuStyle()}
             onMouseEnter={() => setFocusMode(focusModeEnum.hover)}
         >
             {props.selectableObjects !== undefined && props.selectableObjects.length > 0 && (

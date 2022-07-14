@@ -6,6 +6,8 @@
 import { ComponentType, CSSProperties } from "react";
 import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListWidgetValue } from "mendix";
 
+export type SelectStyleEnum = "dropdown" | "list";
+
 export type OptionTextTypeEnum = "text" | "html" | "custom";
 
 export type OptionsStyleEnum = "cell" | "checkbox";
@@ -16,8 +18,10 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     style?: CSSProperties;
     tabIndex?: number;
     placeholder: DynamicValue<string>;
+    isSearchable: boolean;
     isClearable: boolean;
     filterDelay: number;
+    selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;
     optionCustomContent?: ListWidgetValue;
@@ -36,8 +40,10 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     class: string;
     style: string;
     placeholder: string;
+    isSearchable: boolean;
     isClearable: boolean;
     filterDelay: number | null;
+    selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;
     optionCustomContent: { widgetCount: number; renderer: ComponentType };

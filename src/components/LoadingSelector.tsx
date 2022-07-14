@@ -1,6 +1,6 @@
 import { createElement } from "react";
-import CancelIcon from "./CancelIcon";
-import DropdownIcon from "./DropdownIcon";
+import CancelIcon from "./icons/CancelIcon";
+import DropdownIcon from "./icons/DropdownIcon";
 
 interface LoadingSelectorProps {
     name: string;

@@ -2,7 +2,8 @@ import { createElement, useState, useEffect } from "react";
 import { SearchableReferenceSelectorMxEightContainerProps } from "../typings/SearchableReferenceSelectorMxEightProps";
 import { ObjectItem, ValueStatus } from "mendix";
 import { Alert } from "./components/Alert";
-import ReferenceSelector from "./components/ReferenceSelector";
+import ReferenceDropdown from "./components/ReferenceDropdown";
+import ReferenceList from "./components/ReferenceList";
 import LoadingSelector from "./components/LoadingSelector";
 
 import "./ui/ReferenceSelector.css";
@@ -54,26 +55,53 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
 
         return (
             <div className="srs">
-                <ReferenceSelector
-                    name={props.name}
-                    tabIndex={props.tabIndex}
-                    currentValue={currentValueObj}
-                    isClearable={props.isClearable}
-                    onSelectAssociation={(newAssociation: ObjectItem | undefined) =>
-                        onSelectReferenceHandler(newAssociation as ObjectItem & ObjectItem[])
-                    }
-                    selectableObjects={selectableObjectList || []}
-                    placeholder={props.placeholder.value}
-                    maxHeight={props.maxMenuHeight.value}
-                    noResultsText={props.noResultsText.value}
-                    displayAttribute={props.displayAttribute}
-                    optionTextType={props.optionTextType}
-                    selectableAttribute={props.selectableAttribute}
-                    optionCustomContent={props.optionCustomContent}
-                    mxFilter={mxFilter}
-                    setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
-                    optionsStyle={props.optionsStyle}
-                />
+                {props.selectStyle === "dropdown" && (
+                    <ReferenceDropdown
+                        name={props.name}
+                        tabIndex={props.tabIndex}
+                        currentValue={currentValueObj}
+                        isClearable={props.isClearable}
+                        isSearchable={props.isSearchable}
+                        onSelectAssociation={(newAssociation: ObjectItem | undefined) =>
+                            onSelectReferenceHandler(newAssociation as ObjectItem & ObjectItem[])
+                        }
+                        selectableObjects={selectableObjectList || []}
+                        placeholder={props.placeholder.value}
+                        maxHeight={props.maxMenuHeight.value}
+                        noResultsText={props.noResultsText.value}
+                        displayAttribute={props.displayAttribute}
+                        optionTextType={props.optionTextType}
+                        selectableAttribute={props.selectableAttribute}
+                        optionCustomContent={props.optionCustomContent}
+                        mxFilter={mxFilter}
+                        setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
+                        optionsStyle={props.optionsStyle}
+                    />                    
+                )}
+                {props.selectStyle === "list" && (
+                    <ReferenceList
+                        name={props.name}
+                        tabIndex={props.tabIndex}
+                        currentValue={currentValueObj}
+                        isClearable={props.isClearable}
+                        isSearchable={props.isSearchable}
+                        onSelectAssociation={(newAssociation: ObjectItem | undefined) =>
+                            onSelectReferenceHandler(newAssociation as ObjectItem & ObjectItem[])
+                        }
+                        selectableObjects={selectableObjectList || []}
+                        placeholder={props.placeholder.value}
+                        maxHeight={props.maxMenuHeight.value}
+                        noResultsText={props.noResultsText.value}
+                        displayAttribute={props.displayAttribute}
+                        optionTextType={props.optionTextType}
+                        selectableAttribute={props.selectableAttribute}
+                        optionCustomContent={props.optionCustomContent}
+                        mxFilter={mxFilter}
+                        setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
+                        optionsStyle={props.optionsStyle}
+                    />                    
+                )}
+
                 {props.currentValue.validation && <Alert>{props.currentValue.validation}</Alert>}
             </div>
         );

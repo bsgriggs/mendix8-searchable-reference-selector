@@ -1,12 +1,12 @@
 import React, { createElement, ReactNode, useState, useRef, useEffect } from "react";
 import { ObjectItem, ListAttributeValue, ListWidgetValue } from "mendix";
-import CancelIcon from "./CancelIcon";
-import DropdownIcon from "./DropdownIcon";
+import CancelIcon from "./icons/CancelIcon";
+import DropdownIcon from "./icons/DropdownIcon";
 import OptionsMenu from "./OptionsMenu";
 import { OptionsStyleEnum, OptionTextTypeEnum } from "typings/SearchableReferenceSelectorMxEightProps";
 import useOnClickOutside from "../custom hooks/useOnClickOutside";
 
-interface ReferenceSelectorProps {
+interface ReferenceDropdownProps {
     name: string;
     tabIndex?: number;
     placeholder?: string;
@@ -21,16 +21,17 @@ interface ReferenceSelectorProps {
     mxFilter: string;
     setMxFilter: (newFilter: string) => void;
     isClearable: boolean;
+    isSearchable: boolean;
     maxHeight?: string;
     moreResultsText?: string;
     optionsStyle: OptionsStyleEnum;
 }
 
-const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
+const ReferenceDropdown = (props: ReferenceDropdownProps): JSX.Element => {
     const [showMenu, setShowMenu] = useState(false);
     const [focusedObjIndex, setFocusedObjIndex] = useState<number>(-1);
     const searchInput = useRef<HTMLInputElement>(null);
-    const srsRef = useRef(null);
+    const srsRef = useRef<HTMLDivElement>(null);
 
     const focusSearchInput = (): void => {
         if (props.currentValue === undefined && searchInput.current !== null) {
@@ -159,7 +160,7 @@ const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
             onKeyDown={handleInputKeyDown}
             ref={srsRef}
         >
-            {props.currentValue === undefined && (
+            {props.currentValue === undefined  && props.isSearchable && (
                 <input
                     className=""
                     name={props.name}
@@ -175,13 +176,14 @@ const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
                     }}
                 ></input>
             )}
-            {props.currentValue !== undefined && displayCurrentValue()}
-            {props.isClearable && (
-                <div className="srs-icon" onClick={handleClear}>
-                    <CancelIcon />
-                </div>
+            {props.currentValue === undefined && props.isSearchable === false && (
+                <span className="srs-text">{props.placeholder}</span>
             )}
-            <div className="srs-icon">
+            {props.currentValue !== undefined && displayCurrentValue()}
+            <div className="srs-icon-row">
+                {props.isClearable && (
+                    <CancelIcon onClick={handleClear} title={"Clear"} />
+                )}
                 <DropdownIcon />
             </div>
             {showMenu && (
@@ -204,10 +206,11 @@ const ReferenceSelector = (props: ReferenceSelectorProps): JSX.Element => {
                     optionTextType={props.optionTextType}
                     optionCustomContent={props.optionCustomContent}
                     optionsStyle={props.optionsStyle}
+                    selectStyle={"dropdown"}
                 />
             )}
         </div>
     );
 };
 
-export default ReferenceSelector;
+export default ReferenceDropdown;

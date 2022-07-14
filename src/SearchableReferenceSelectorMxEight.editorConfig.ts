@@ -51,6 +51,18 @@ export function getProperties(
         hidePropertiesIn(defaultProperties, _values, ["onSelectEmpty"]);
     }
 
+    if (_values.selectStyle === "list") {
+        hidePropertiesIn(defaultProperties, _values, ["maxMenuHeight"]);
+    }
+
+    if (_values.isSearchable === false) {
+        hidePropertiesIn(defaultProperties, _values, ["filterDelay",]);
+    }
+
+    if (_values.isSearchable === false && _values.selectStyle === "list") {
+        hidePropertiesIn(defaultProperties, _values, ["placeholder"]);
+    }
+
     return defaultProperties;
 }
 
