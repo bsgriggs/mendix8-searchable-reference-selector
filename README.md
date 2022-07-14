@@ -39,7 +39,7 @@ The following is an example for using the widget on a page with a Transaction to
 ![Data Source](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/DataSource.png)  
 
 ![Actions](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/Actions.png)  
-*Note: On Select Association is required. See an example below. It can also be used as an On Change microflow.*
+*Note: On Select Association is required. Microflow must have the 2 parameters: the page object and the selectable object. See an example below. It can also be used as an On Change microflow.*
 
 **ACT_Transaction_SelectCategory**  
 ![Select Category](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectCategory.png)   
