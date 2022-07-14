@@ -160,7 +160,7 @@ const ReferenceDropdown = (props: ReferenceDropdownProps): JSX.Element => {
             onKeyDown={handleInputKeyDown}
             ref={srsRef}
         >
-            {props.currentValue === undefined  && props.isSearchable && (
+            {props.currentValue === undefined && props.isSearchable && (
                 <input
                     className=""
                     name={props.name}
@@ -181,9 +181,7 @@ const ReferenceDropdown = (props: ReferenceDropdownProps): JSX.Element => {
             )}
             {props.currentValue !== undefined && displayCurrentValue()}
             <div className="srs-icon-row">
-                {props.isClearable && (
-                    <CancelIcon onClick={handleClear} title={"Clear"} />
-                )}
+                {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} />}
                 <DropdownIcon />
             </div>
             {showMenu && (

@@ -76,7 +76,7 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
                         mxFilter={mxFilter}
                         setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
                         optionsStyle={props.optionsStyle}
-                    />                    
+                    />
                 )}
                 {props.selectStyle === "list" && (
                     <ReferenceList
@@ -99,7 +99,7 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
                         mxFilter={mxFilter}
                         setMxFilter={(newFilter: string) => setMxFilter(newFilter)}
                         optionsStyle={props.optionsStyle}
-                    />                    
+                    />
                 )}
 
                 {props.currentValue.validation && <Alert>{props.currentValue.validation}</Alert>}

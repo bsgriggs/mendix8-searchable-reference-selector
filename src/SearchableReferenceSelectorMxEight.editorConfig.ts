@@ -56,7 +56,7 @@ export function getProperties(
     }
 
     if (_values.isSearchable === false) {
-        hidePropertiesIn(defaultProperties, _values, ["filterDelay",]);
+        hidePropertiesIn(defaultProperties, _values, ["filterDelay"]);
     }
 
     if (_values.isSearchable === false && _values.selectStyle === "list") {

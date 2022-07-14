@@ -56,7 +56,6 @@ const OptionsMenu = (props: OptionsMenuProps): JSX.Element => {
         }
     };
 
-
     const OptionsMenuStyle = (): React.CSSProperties => {
         if (props.selectStyle === "dropdown") {
             return {

@@ -93,56 +93,54 @@ const ReferenceList = (props: ReferenceListProps): JSX.Element => {
 
     return (
         <React.Fragment>
-        {props.isSearchable && (
-            <div
-                className={"form-control"}
-                tabIndex={props.tabIndex || 0}
-                onKeyDown={handleInputKeyDown}
-                ref={srsRef}
-            >
-                <input
-                    className=""
-                    name={props.name}
-                    placeholder={props.placeholder}
-                    type="text"
-                    onChange={handleInputChange}
-                    value={props.mxFilter}
-                    ref={searchInput}
-                ></input>
+            {props.isSearchable && (
+                <div
+                    className={"form-control"}
+                    tabIndex={props.tabIndex || 0}
+                    onKeyDown={handleInputKeyDown}
+                    ref={srsRef}
+                >
+                    <input
+                        className=""
+                        name={props.name}
+                        placeholder={props.placeholder}
+                        type="text"
+                        onChange={handleInputChange}
+                        value={props.mxFilter}
+                        ref={searchInput}
+                    ></input>
 
-                {props.isClearable && (
+                    {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} />}
+                </div>
+            )}
+            <div className="form-control srs-selectable-list">
+                <OptionsMenu
+                    selectableObjects={props.selectableObjects}
+                    displayAttribute={props.displayAttribute}
+                    onSelectOption={(newObject: ObjectItem | undefined) => {
+                        const newObjSelectable =
+                            newObject !== undefined && props.selectableAttribute !== undefined
+                                ? props.selectableAttribute(newObject).value === true
+                                : true;
+                        if (newObjSelectable) {
+                            onSelectHandler(newObject);
+                        }
+                    }}
+                    currentValue={props.currentValue}
+                    currentFocus={props.selectableObjects[focusedObjIndex]}
+                    searchText={props.mxFilter}
+                    selectableAttribute={props.selectableAttribute}
+                    noResultsText={props.noResultsText}
+                    optionTextType={props.optionTextType}
+                    optionCustomContent={props.optionCustomContent}
+                    optionsStyle={props.optionsStyle}
+                    selectStyle={"list"}
+                />
+                {props.isSearchable === false && props.isClearable && (
                     <CancelIcon onClick={handleClear} title={"Clear"} />
                 )}
             </div>
-        )}
-        <div className="form-control srs-selectable-list">
-            <OptionsMenu
-                selectableObjects={props.selectableObjects}
-                displayAttribute={props.displayAttribute}
-                onSelectOption={(newObject: ObjectItem | undefined) => {
-                    const newObjSelectable =
-                        newObject !== undefined && props.selectableAttribute !== undefined
-                            ? props.selectableAttribute(newObject).value === true
-                            : true;
-                    if (newObjSelectable) {
-                        onSelectHandler(newObject);
-                    }
-                }}
-                currentValue={props.currentValue}
-                currentFocus={props.selectableObjects[focusedObjIndex]}
-                searchText={props.mxFilter}
-                selectableAttribute={props.selectableAttribute}
-                noResultsText={props.noResultsText}
-                optionTextType={props.optionTextType}
-                optionCustomContent={props.optionCustomContent}
-                optionsStyle={props.optionsStyle}
-                selectStyle={"list"}
-            />
-            {props.isSearchable === false && props.isClearable && (
-                <CancelIcon onClick={handleClear} title={"Clear"} />
-            )}
-        </div>
-    </React.Fragment>
+        </React.Fragment>
     );
 };
 
