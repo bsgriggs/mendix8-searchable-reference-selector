@@ -1,6 +1,6 @@
 ## Searchable Reference Selector for Mendix 8.17 - 9.12
 
-Mendix reference selector with a search bar and a clear button by Benjamin Griggs.  
+Mendix reference selector with a search bar and a clear button. 
 
 **If you are using Mendix 9.13 OR ABOVE**, please use the following widget.  
 https://github.com/bsgriggs/mendix9-searchable-reference-selector
