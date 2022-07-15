@@ -1,6 +1,6 @@
 import React, { createElement, ReactNode, useState, useRef, useEffect } from "react";
-import { ObjectItem, ListAttributeValue, ListWidgetValue } from "mendix";
-import CancelIcon from "./icons/CancelIcon";
+import { ObjectItem, ListAttributeValue, ListWidgetValue,DynamicValue,WebIcon } from "mendix";
+import CancelIcon from "./icons/ClearIcon";
 import DropdownIcon from "./icons/DropdownIcon";
 import OptionsMenu from "./OptionsMenu";
 import { OptionsStyleEnum, OptionTextTypeEnum } from "typings/SearchableReferenceSelectorMxEightProps";
@@ -21,6 +21,8 @@ interface ReferenceDropdownProps {
     mxFilter: string;
     setMxFilter: (newFilter: string) => void;
     isClearable: boolean;
+    clearIcon?: DynamicValue<WebIcon>;
+    dropdownIcon?: DynamicValue<WebIcon>;
     isSearchable: boolean;
     maxHeight?: string;
     moreResultsText?: string;
@@ -92,6 +94,9 @@ const ReferenceDropdown = (props: ReferenceDropdownProps): JSX.Element => {
             }
         }
     };
+
+    console.log("current value", props.currentValue);
+    console.log("display attribute", props.displayAttribute);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const value = event.target.value;
@@ -181,8 +186,8 @@ const ReferenceDropdown = (props: ReferenceDropdownProps): JSX.Element => {
             )}
             {props.currentValue !== undefined && displayCurrentValue()}
             <div className="srs-icon-row">
-                {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} />}
-                <DropdownIcon />
+                {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon}/>}
+                <DropdownIcon mxIconOverride={props.dropdownIcon}/>
             </div>
             {showMenu && (
                 <OptionsMenu

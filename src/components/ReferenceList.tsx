@@ -1,6 +1,6 @@
 import React, { createElement, useState, useRef } from "react";
-import { ObjectItem, ListAttributeValue, ListWidgetValue } from "mendix";
-import CancelIcon from "./icons/CancelIcon";
+import { ObjectItem, ListAttributeValue, ListWidgetValue, DynamicValue, WebIcon } from "mendix";
+import CancelIcon from "./icons/ClearIcon";
 import OptionsMenu from "./OptionsMenu";
 import { OptionsStyleEnum, OptionTextTypeEnum } from "../../typings/SearchableReferenceSelectorMxEightProps";
 
@@ -19,6 +19,7 @@ interface ReferenceListProps {
     mxFilter: string;
     setMxFilter: (newFilter: string) => void;
     isClearable: boolean;
+    clearIcon?: DynamicValue<WebIcon>;
     isSearchable: boolean;
     maxHeight?: string;
     moreResultsText?: string;
@@ -110,7 +111,7 @@ const ReferenceList = (props: ReferenceListProps): JSX.Element => {
                         ref={searchInput}
                     ></input>
 
-                    {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} />}
+                    {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon}/>}
                 </div>
             )}
             <div className="form-control srs-selectable-list">
@@ -137,7 +138,7 @@ const ReferenceList = (props: ReferenceListProps): JSX.Element => {
                     selectStyle={"list"}
                 />
                 {props.isSearchable === false && props.isClearable && (
-                    <CancelIcon onClick={handleClear} title={"Clear"} />
+                    <CancelIcon onClick={handleClear} title={"Clear"}  mxIconOverride={props.clearIcon}/>
                 )}
             </div>
         </React.Fragment>

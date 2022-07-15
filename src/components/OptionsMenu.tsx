@@ -5,7 +5,7 @@ import { OptionTextTypeEnum, OptionsStyleEnum, SelectStyleEnum } from "typings/S
 
 interface OptionsMenuProps {
     selectableObjects: ObjectItem[];
-    currentValue?: ObjectItem | ObjectItem[];
+    currentValue?: ObjectItem;
     currentFocus?: ObjectItem;
     displayAttribute: ListAttributeValue<string>;
     selectableAttribute?: ListAttributeValue<boolean>;

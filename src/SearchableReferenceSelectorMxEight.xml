@@ -48,6 +48,7 @@
                 <enumerationValues>
                     <enumerationValue key="cell">Cell</enumerationValue>
                     <enumerationValue key="checkbox">Checkbox</enumerationValue>
+                    <enumerationValue key="radio">Radio Buttons</enumerationValue>
                 </enumerationValues>
             </property>
             <property key="optionCustomContent" type="widgets" required="false" dataSource="selectableObjects">
@@ -63,6 +64,14 @@
                 <caption>No Results Text</caption>
                 <description>Message shown if no results were found</description>
                 <returnType type="String" />
+            </property>
+            <property key="clearIcon" type="icon" required="false">
+                <caption>Clear Icon</caption>
+                <description></description>
+            </property>
+            <property key="dropdownIcon" type="icon" required="false">
+                <caption>Dropdown Icon</caption>
+                <description></description>
             </property>
         </propertyGroup>
         <propertyGroup caption="Data Source">

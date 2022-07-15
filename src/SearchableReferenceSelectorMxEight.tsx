@@ -61,6 +61,8 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
                         tabIndex={props.tabIndex}
                         currentValue={currentValueObj}
                         isClearable={props.isClearable}
+                        clearIcon={props.clearIcon}
+                        dropdownIcon={props.dropdownIcon}
                         isSearchable={props.isSearchable}
                         onSelectAssociation={(newAssociation: ObjectItem | undefined) =>
                             onSelectReferenceHandler(newAssociation as ObjectItem & ObjectItem[])
@@ -84,6 +86,7 @@ const SearchableReferenceSelector = (props: SearchableReferenceSelectorMxEightCo
                         tabIndex={props.tabIndex}
                         currentValue={currentValueObj}
                         isClearable={props.isClearable}
+                        clearIcon={props.clearIcon}
                         isSearchable={props.isSearchable}
                         onSelectAssociation={(newAssociation: ObjectItem | undefined) =>
                             onSelectReferenceHandler(newAssociation as ObjectItem & ObjectItem[])

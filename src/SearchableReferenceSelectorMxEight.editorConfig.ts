@@ -48,11 +48,11 @@ export function getProperties(
     }
 
     if (_values.isClearable === false) {
-        hidePropertiesIn(defaultProperties, _values, ["onSelectEmpty"]);
+        hidePropertiesIn(defaultProperties, _values, ["onSelectEmpty", "clearIcon"]);
     }
 
     if (_values.selectStyle === "list") {
-        hidePropertiesIn(defaultProperties, _values, ["maxMenuHeight"]);
+        hidePropertiesIn(defaultProperties, _values, ["maxMenuHeight", "dropdownIcon"]);
     }
 
     if (_values.isSearchable === false) {

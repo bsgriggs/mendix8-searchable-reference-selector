@@ -4,13 +4,13 @@
  * @author Mendix UI Content Team
  */
 import { ComponentType, CSSProperties } from "react";
-import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListWidgetValue } from "mendix";
+import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListWidgetValue, WebIcon } from "mendix";
 
 export type SelectStyleEnum = "dropdown" | "list";
 
 export type OptionTextTypeEnum = "text" | "html" | "custom";
 
-export type OptionsStyleEnum = "cell" | "checkbox";
+export type OptionsStyleEnum = "cell" | "checkbox" | "radio";
 
 export interface SearchableReferenceSelectorMxEightContainerProps {
     name: string;
@@ -26,6 +26,8 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     optionCustomContent?: ListWidgetValue;
     maxMenuHeight: DynamicValue<string>;
     noResultsText: DynamicValue<string>;
+    clearIcon?: DynamicValue<WebIcon>;
+    dropdownIcon?: DynamicValue<WebIcon>;
     selectableObjects: ListValue;
     displayAttribute: ListAttributeValue<string | BigJs.Big>;
     currentValue: EditableValue<string | BigJs.Big>;
@@ -47,6 +49,8 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     optionCustomContent: { widgetCount: number; renderer: ComponentType };
     maxMenuHeight: string;
     noResultsText: string;
+    clearIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    dropdownIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     selectableObjects: {} | null;
     displayAttribute: string;
     currentValue: string;
