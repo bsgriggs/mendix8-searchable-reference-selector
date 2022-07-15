@@ -1,7 +1,7 @@
 {
   "name": "searchablereferenceselectormxeight",
   "widgetName": "SearchableReferenceSelectorMxEight",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "A Reference Selector with a search bar",
   "copyright": "2022 Mendix",
   "author": "Benjamin Griggs",

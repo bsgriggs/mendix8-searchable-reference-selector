@@ -111,7 +111,9 @@ const ReferenceList = (props: ReferenceListProps): JSX.Element => {
                         ref={searchInput}
                     ></input>
 
-                    {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon}/>}
+                    {props.isClearable && (
+                        <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon} />
+                    )}
                 </div>
             )}
             <div className="form-control srs-selectable-list">
@@ -138,7 +140,7 @@ const ReferenceList = (props: ReferenceListProps): JSX.Element => {
                     selectStyle={"list"}
                 />
                 {props.isSearchable === false && props.isClearable && (
-                    <CancelIcon onClick={handleClear} title={"Clear"}  mxIconOverride={props.clearIcon}/>
+                    <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon} />
                 )}
             </div>
         </React.Fragment>

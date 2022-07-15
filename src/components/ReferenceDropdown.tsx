@@ -1,5 +1,5 @@
 import React, { createElement, ReactNode, useState, useRef, useEffect } from "react";
-import { ObjectItem, ListAttributeValue, ListWidgetValue,DynamicValue,WebIcon } from "mendix";
+import { ObjectItem, ListAttributeValue, ListWidgetValue, DynamicValue, WebIcon } from "mendix";
 import CancelIcon from "./icons/ClearIcon";
 import DropdownIcon from "./icons/DropdownIcon";
 import OptionsMenu from "./OptionsMenu";
@@ -186,8 +186,10 @@ const ReferenceDropdown = (props: ReferenceDropdownProps): JSX.Element => {
             )}
             {props.currentValue !== undefined && displayCurrentValue()}
             <div className="srs-icon-row">
-                {props.isClearable && <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon}/>}
-                <DropdownIcon mxIconOverride={props.dropdownIcon}/>
+                {props.isClearable && (
+                    <CancelIcon onClick={handleClear} title={"Clear"} mxIconOverride={props.clearIcon} />
+                )}
+                <DropdownIcon mxIconOverride={props.dropdownIcon} />
             </div>
             {showMenu && (
                 <OptionsMenu
