@@ -1,39 +1,36 @@
-import { createElement, ReactNode } from "react";
+import React, { createElement } from "react";
 import useHover from "../custom hooks/useHover";
-import { OptionsStyleEnum } from "typings/SearchableReferenceSelectorMxEightProps";
-export enum focusModeEnum {
-    hover = "hover",
-    arrow = "arrow"
-}
+import { IOption } from "../../typings/option";
+import { OptionsStyleEnum } from "../../typings/SearchableReferenceSelectorMxEightProps";
+import { focusModeEnum } from "../../typings/general";
 
 interface OptionProps {
     index: number;
-    isSelected: boolean;
+    onSelect: (selectedOption: IOption) => void;
+    option: IOption;
     isFocused: boolean;
-    isSelectable: boolean;
     focusMode: focusModeEnum;
-    onSelect: () => void;
     optionsStyle: OptionsStyleEnum;
-    children: ReactNode;
 }
 
-const Option = (props: React.PropsWithChildren<OptionProps>): JSX.Element => {
+const Option = ({
+    onSelect,
+    option,
+    index,
+    focusMode,
+    isFocused,
+    optionsStyle
+}: React.PropsWithChildren<OptionProps>): React.ReactElement => {
     const [hoverRef, isHovered] = useHover<HTMLDivElement>();
     const determineClassName = (): string => {
         let className = "srs-option";
-        if (props.optionsStyle === "cell" ? props.isSelected : false) {
+        if (optionsStyle === "cell" ? option.isSelected : false) {
             className = className + " selected";
         }
-        if (props.isSelectable === false) {
+        if (!option.isSelectable) {
             className = className + " disabled";
         }
-        if (
-            props.focusMode === focusModeEnum.arrow
-                ? props.isFocused
-                : props.optionsStyle === "cell"
-                ? isHovered
-                : false
-        ) {
+        if (focusMode === focusModeEnum.arrow ? isFocused : optionsStyle === "cell" ? isHovered : false) {
             className = className + " focused";
         }
         return className;
@@ -42,25 +39,22 @@ const Option = (props: React.PropsWithChildren<OptionProps>): JSX.Element => {
     return (
         <div
             role="option"
-            aria-selected={props.isSelected ? "true" : "false"}
-            aria-disabled={props.isSelectable === false}
-            tabIndex={props.index}
+            aria-selected={option.isSelected ? "true" : "false"}
+            aria-disabled={!option.isSelectable}
+            tabIndex={index}
             className={determineClassName()}
             onClick={(event: React.MouseEvent<HTMLDivElement>) => {
                 event.stopPropagation();
-                if (props.isSelectable) {
-                    props.onSelect();
+                if (option.isSelectable) {
+                    onSelect(option);
                 }
             }}
             ref={hoverRef}
         >
-            {props.optionsStyle === "checkbox" && (
-                <input type={"checkbox"} checked={props.isSelected} disabled={!props.isSelectable}></input>
+            {optionsStyle === "checkbox" && (
+                <input type={"checkbox"} checked={option.isSelected} disabled={!option.isSelectable}></input>
             )}
-            {props.optionsStyle === "radio" && (
-                <input type={"radio"} checked={props.isSelected} disabled={!props.isSelectable} />
-            )}
-            {props.children}
+            {option.content}
         </div>
     );
 };

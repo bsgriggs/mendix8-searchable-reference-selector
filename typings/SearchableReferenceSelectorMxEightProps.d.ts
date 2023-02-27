@@ -4,22 +4,36 @@
  * @author Mendix UI Content Team
  */
 import { ComponentType, CSSProperties } from "react";
-import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListWidgetValue, WebIcon } from "mendix";
+import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListExpressionValue, ListWidgetValue, WebIcon } from "mendix";
+
+export type LabelOrientationEnum = "horizontal" | "vertical";
 
 export type SelectStyleEnum = "dropdown" | "list";
 
 export type OptionTextTypeEnum = "text" | "html" | "custom";
 
-export type OptionsStyleEnum = "cell" | "checkbox" | "radio";
+export type OptionsStyleEnum = "cell" | "checkbox";
+
+export type SelectionTypeEnum = "enumeration" | "reference";
+
+export type FilterTypeEnum = "auto" | "manual";
+
+export type FilterFunctionEnum = "contains" | "startsWith";
 
 export interface SearchableReferenceSelectorMxEightContainerProps {
     name: string;
     class: string;
     style?: CSSProperties;
     tabIndex?: number;
+    showLabel: boolean;
+    label?: DynamicValue<string>;
+    labelOrientation: LabelOrientationEnum;
+    labelWidth: number;
     placeholder: DynamicValue<string>;
+    editabilty: DynamicValue<boolean>;
     isSearchable: boolean;
-    filterDelay: number;
+    isClearable: boolean;
+    onSelectEmpty?: ActionValue;
     selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;
@@ -28,21 +42,37 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     noResultsText: DynamicValue<string>;
     clearIcon?: DynamicValue<WebIcon>;
     dropdownIcon?: DynamicValue<WebIcon>;
-    selectableObjects: ListValue;
-    displayAttribute: ListAttributeValue<string | BigJs.Big>;
-    currentValue: EditableValue<string | BigJs.Big>;
-    selectableAttribute?: ListAttributeValue<boolean>;
+    selectionType: SelectionTypeEnum;
+    selectableObjects?: ListValue;
+    displayAttribute?: ListAttributeValue<string>;
+    currentValue?: EditableValue<string>;
+    selectableCondition: ListExpressionValue<boolean>;
+    enumAttribute?: EditableValue<string>;
+    filterDelay: number;
+    filterType: FilterTypeEnum;
+    filterFunction: FilterFunctionEnum;
+    searchText?: EditableValue<string>;
+    hasMoreResultsManual?: DynamicValue<boolean>;
+    onSelectMoreResults?: ActionValue;
+    moreResultsText: DynamicValue<string>;
+    refreshAction?: ActionValue;
     onSelectAssociation?: ListActionValue;
-    isClearable: boolean;
-    onSelectEmpty?: ActionValue;
+    onChange?: ActionValue;
+    onLeave?: ActionValue;
 }
 
 export interface SearchableReferenceSelectorMxEightPreviewProps {
     class: string;
     style: string;
+    showLabel: boolean;
+    label: string;
+    labelOrientation: LabelOrientationEnum;
+    labelWidth: number | null;
     placeholder: string;
+    editabilty: string;
     isSearchable: boolean;
-    filterDelay: number | null;
+    isClearable: boolean;
+    onSelectEmpty: {} | null;
     selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;
@@ -51,11 +81,21 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     noResultsText: string;
     clearIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     dropdownIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    selectionType: SelectionTypeEnum;
     selectableObjects: {} | null;
     displayAttribute: string;
     currentValue: string;
-    selectableAttribute: string;
+    selectableCondition: string;
+    enumAttribute: string;
+    filterDelay: number | null;
+    filterType: FilterTypeEnum;
+    filterFunction: FilterFunctionEnum;
+    searchText: string;
+    hasMoreResultsManual: string;
+    onSelectMoreResults: {} | null;
+    moreResultsText: string;
+    refreshAction: {} | null;
     onSelectAssociation: {} | null;
-    isClearable: boolean;
-    onSelectEmpty: {} | null;
+    onChange: {} | null;
+    onLeave: {} | null;
 }

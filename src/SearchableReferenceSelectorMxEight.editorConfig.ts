@@ -1,5 +1,5 @@
 import { SearchableReferenceSelectorMxEightPreviewProps } from "../typings/SearchableReferenceSelectorMxEightProps";
-import { hidePropertiesIn } from "./utils/PageEditorUtils";
+import { hidePropertiesIn, hidePropertyIn } from "./utils/PageEditorUtils";
 
 export type Properties = PropertyGroup[];
 
@@ -37,22 +37,50 @@ export function getProperties(
     defaultProperties: Properties
 ): Properties {
     // Do the values manipulation here to control the visibility of properties in Studio and Studio Pro conditionally.
-    /* Example
-    if (values.myProperty === "custom") {
-        delete defaultProperties.properties.myOtherProperty;
+    if (_values.selectionType === "reference") {
+        hidePropertiesIn(defaultProperties, _values, ["enumAttribute", "onChange"]);
+    } else {
+        hidePropertiesIn(defaultProperties, _values, [
+            "displayAttribute",
+            "moreResultsText",
+            "onSelectAssociation",
+            "onSelectMoreResults",
+            "onSelectEmpty",
+            "selectableCondition",
+            "selectableObjects",
+            "currentValue",
+            "filterType"
+        ]);
+        hidePropertiesIn(defaultProperties, _values, [
+            "searchText",
+            "hasMoreResultsManual",
+            "moreResultsText",
+            "refreshAction"
+        ]);
     }
-    */
+
+    if (_values.filterType === "auto") {
+        hidePropertiesIn(defaultProperties, _values, [
+            "searchText",
+            "hasMoreResultsManual",
+            "moreResultsText",
+            "refreshAction",
+            "onSelectMoreResults"
+        ]);
+    } else {
+        hidePropertiesIn(defaultProperties, _values, ["filterFunction"]);
+    }
 
     if (_values.optionTextType !== "custom") {
         hidePropertiesIn(defaultProperties, _values, ["optionCustomContent"]);
     }
 
     if (_values.isClearable === false) {
-        hidePropertiesIn(defaultProperties, _values, ["onSelectEmpty", "clearIcon"]);
+        hidePropertiesIn(defaultProperties, _values, ["onSelectEmpty"]);
     }
 
     if (_values.selectStyle === "list") {
-        hidePropertiesIn(defaultProperties, _values, ["maxMenuHeight", "dropdownIcon"]);
+        hidePropertiesIn(defaultProperties, _values, ["maxMenuHeight"]);
     }
 
     if (_values.isSearchable === false) {
@@ -61,6 +89,12 @@ export function getProperties(
 
     if (_values.isSearchable === false && _values.selectStyle === "list") {
         hidePropertiesIn(defaultProperties, _values, ["placeholder"]);
+    }
+
+    if(!_values.showLabel){
+        hidePropertiesIn(defaultProperties, _values, ["label", "labelOrientation", "labelWidth"]);
+    }else if(_values.labelOrientation === "vertical"){
+        hidePropertyIn(defaultProperties,_values, "labelWidth");
     }
 
     return defaultProperties;
@@ -95,7 +129,7 @@ export function check(_values: SearchableReferenceSelectorMxEightPreviewProps): 
         });
     }
 
-    if (_values.onSelectAssociation === null) {
+    if (_values.selectionType === "reference" && _values.onSelectAssociation === null) {
         errors.push({
             property: `onSelectAssociation`,
             message: `On Select Association is required`,
@@ -103,7 +137,7 @@ export function check(_values: SearchableReferenceSelectorMxEightPreviewProps): 
         });
     }
 
-    if (_values.isClearable && _values.onSelectEmpty === null) {
+    if (_values.selectionType === "reference" && _values.isClearable && _values.onSelectEmpty === null) {
         errors.push({
             property: `onSelectEmpty`,
             message: `On Select Empty is required`,

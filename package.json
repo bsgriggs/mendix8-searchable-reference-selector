@@ -1,13 +1,13 @@
 {
   "name": "searchablereferenceselectormxeight",
   "widgetName": "SearchableReferenceSelectorMxEight",
-  "version": "1.2.5",
-  "description": "A Reference Selector with a search bar",
+  "version": "1.2.6",
+  "description": "A Reference and Enumeration Selector with a search bar",
   "copyright": "2022 Mendix",
   "author": "Benjamin Griggs",
   "config": {
     "projectPath": "../..//",
-    "mendixHost": "http://localhost:8080",
+    "mendixHost": "http://localhost:8082",
     "developmentPort": "3000"
   },
   "packagePath": "mendix",
@@ -22,7 +22,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^8.14.0",
+    "@mendix/pluggable-widgets-tools": "^8.18.4",
     "@types/big.js": "^6.0.2",
     "@types/react": "~17.0.1",
     "@types/react-dom": "~17.0.1"
