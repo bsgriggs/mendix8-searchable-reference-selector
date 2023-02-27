@@ -1,7 +1,7 @@
 /**
  * This file was generated from SearchableReferenceSelectorMxEight.xml
  * WARNING: All changes made to this file will be overwritten
- * @author Mendix UI Content Team
+ * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties } from "react";
 import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListExpressionValue, ListWidgetValue, WebIcon } from "mendix";
@@ -46,7 +46,7 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
     selectableObjects?: ListValue;
     displayAttribute?: ListAttributeValue<string>;
     currentValue?: EditableValue<string>;
-    selectableCondition: ListExpressionValue<boolean>;
+    selectableCondition?: ListExpressionValue<boolean>;
     enumAttribute?: EditableValue<string>;
     filterDelay: number;
     filterType: FilterTypeEnum;
@@ -62,8 +62,14 @@ export interface SearchableReferenceSelectorMxEightContainerProps {
 }
 
 export interface SearchableReferenceSelectorMxEightPreviewProps {
+    /**
+     * @deprecated Deprecated since version 9.18.0. Please use class property instead.
+     */
+    className: string;
     class: string;
     style: string;
+    styleObject?: CSSProperties;
+    readOnly: boolean;
     showLabel: boolean;
     label: string;
     labelOrientation: LabelOrientationEnum;
@@ -76,13 +82,13 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     selectStyle: SelectStyleEnum;
     optionTextType: OptionTextTypeEnum;
     optionsStyle: OptionsStyleEnum;
-    optionCustomContent: { widgetCount: number; renderer: ComponentType };
+    optionCustomContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     maxMenuHeight: string;
     noResultsText: string;
     clearIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     dropdownIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
     selectionType: SelectionTypeEnum;
-    selectableObjects: {} | null;
+    selectableObjects: {} | { type: string } | null;
     displayAttribute: string;
     currentValue: string;
     selectableCondition: string;

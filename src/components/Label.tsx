@@ -16,7 +16,6 @@ export default function Label({
     return showLabel && labelValue ? (
         <label
             className={"control-label" + (showHorizontal ? " col-sm-" + labelWidth : "")}
-            style={{flexDirection : showHorizontal ? "row" : "column"}}
         >
             {labelValue}
         </label>

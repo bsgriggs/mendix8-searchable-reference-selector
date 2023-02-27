@@ -78,10 +78,10 @@ const mapObjectItems = (
     optionTextType: OptionTextTypeEnum,
     displayAttribute: ListAttributeValue<string>,
     optionCustomContent: ListWidgetValue | undefined,
-    selectableCondition: ListExpressionValue<boolean>,
+    selectableCondition: ListExpressionValue<boolean> | undefined,
     currentValue: EditableValue<string>
 ): IOption[] =>
-    objectItems
+    objectItems && selectableCondition
         ? objectItems.map(objItem => {
               return {
                   content: displayContent(
@@ -349,7 +349,15 @@ const SearchableReferenceSelector = ({
     }
 
     return (
-        <div className={ "form-group " +(!showLabel || labelOrientation === "vertical" ? "no-columns " : "") +className} style={style} >
+        <div
+            className={
+                "form-group " +
+                (!showLabel || labelOrientation === "vertical" ? "no-columns " : "") +
+                ((currentValue && currentValue.validation)||(enumAttribute && enumAttribute.validation) ? "has-error " : "") +
+                className
+            }
+            style={style}
+        >
             <Label
                 labelValue={label?.value as string}
                 // name={name}
@@ -357,7 +365,11 @@ const SearchableReferenceSelector = ({
                 showHorizontal={labelOrientation === "horizontal"}
                 labelWidth={labelWidth}
             />
-            <div className={"srs" + (showLabel && labelOrientation === "horizontal" ? " col-sm-" + (12 - labelWidth) : "")}>
+            <div
+                className={
+                    "srs" + (showLabel && labelOrientation === "horizontal" ? " col-sm-" + (12 - labelWidth) : "")
+                }
+            >
                 <Selector
                     clearIcon={clearIcon?.value}
                     dropdownIcon={dropdownIcon?.value}
@@ -400,10 +412,9 @@ const SearchableReferenceSelector = ({
                         }
                     }}
                 />
+                {enumAttribute && enumAttribute.validation && <Alert>{enumAttribute.validation}</Alert>}
+                {currentValue && currentValue.validation && <Alert>{currentValue.validation}</Alert>}
             </div>
-
-            {enumAttribute && enumAttribute.validation && <Alert>{enumAttribute.validation}</Alert>}
-            {currentValue && currentValue.validation && <Alert>{currentValue.validation}</Alert>}
         </div>
     );
 };
