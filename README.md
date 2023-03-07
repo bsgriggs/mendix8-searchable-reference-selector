@@ -31,21 +31,26 @@ https://github.com/bsgriggs/mendix9-searchable-reference-selector
 
 ## Configuration
 
+*Domain Model*  
 ![Domain](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/Domain.png)  
 
-The following is an example for using the widget on a page with a Transaction to set its association to Category  
-
+*General settings*  
 ![general](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/general.png)  
 
+*Style settings*  
 ![style](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/style.png)  
 
+*Data source settings*  
 ![Data Source](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/dataSourceRef.png)   
-*Note: On Select Association is required. Microflow must have the 2 parameters: the page object and the selectable object. See an example below. It can also be used as an On Change microflow.*  
 
 *Auto filtering*  
 ![filtering](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/filteringAuto.png)   
 *Manual filtering*  
 ![filtering](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/filteringManual.png)  
+
+*Actions*  
+![actions](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/actions.png)  
+*Note: On Select Association is required for references. Microflow must have the 2 parameters: the page object and the selectable object. See an example below.*  
 
 **ACT_Transaction_SelectCategory**  
 ![Select Category](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectCategory.png)   
