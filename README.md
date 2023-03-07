@@ -31,32 +31,33 @@ https://github.com/bsgriggs/mendix9-searchable-reference-selector
 
 ## Configuration
 
-*Domain Model*  
+**Domain Model** 
 ![Domain](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/Domain.png)  
 
-*General settings*  
+**General settings**  
 ![general](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/general.png)  
+If "Clearable?" is set to yes, you will need to add an action to perform the clearing similar to this:  
+**ACT_Transaction_SelectEmptyTimeZone**  
+![Select Empty](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectEmptyTimeZone.png)  
 
-*Style settings*  
+**Style settings**  
 ![style](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/style.png)  
 
-*Data source settings*  
+**Data source settings**  
 ![Data Source](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/dataSourceRef.png)   
 
-*Auto filtering*  
+**Auto filtering**  
 ![filtering](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/filteringAuto.png)   
-*Manual filtering*  
+**Manual filtering**  
 ![filtering](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/filteringManual.png)  
+For more information on how to set up manual filtering, see documentation [here](https://github.com/bsgriggs/mendix9-searchable-reference-selector/blob/master/docs/ManualFiltering.md).
 
-*Actions*  
+**Actions**  
 ![actions](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/actions.png)  
-*Note: On Select Association is required for references. Microflow must have the 2 parameters: the page object and the selectable object. See an example below.*  
-
-**ACT_Transaction_SelectCategory**  
-![Select Category](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectCategory.png)   
-
-**ACT_Transaction_SelectEmptyCategory**  
-![Select Empty](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectEmpty.png)   
+On Select Association is required for references. Microflow must have the 2 parameters: the page object and the selectable object. See an example below.  
+**ACT_Transaction_SelectTimeZone**  
+![Select Time Zone](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectTimeZone.png)  
+This can also be used as an OnChange action, because it is called when the user clicks an option.
 
 ## Usage
 
