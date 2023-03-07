@@ -1,6 +1,6 @@
 ## Searchable Reference Selector for Mendix 8.17 - 9.12
 
-Mendix reference selector with a search bar and a clear button. 
+Mendix reference and enumeration selector with a search bar and a clear button. 
 
 **If you are using Mendix 9.13 OR ABOVE**, please use the following widget.  
 https://github.com/bsgriggs/mendix9-searchable-reference-selector
@@ -13,6 +13,7 @@ https://github.com/bsgriggs/mendix9-searchable-reference-selector
 ## Features
 
 -   Dropdown or list selection with any objects you want
+-   Widget can select an enumeration or an object reference
 -   Selecting an option triggers a Mendix Action
 -   Option to allow the user to clear the selection or not
 -   Option to render options as checkboxes
@@ -20,6 +21,8 @@ https://github.com/bsgriggs/mendix9-searchable-reference-selector
 -   Ability to marked specific options as un-selectable
 -   Support for arrow keys and enter key press
 -   Searching auto-highlights the first record for easy selecting with the enter key
+-   Can define your own filtering logic with Manual filtering mode
+-   Paginate the result list with Manual filtering mode
 
 ## Limitation
 
@@ -32,14 +35,17 @@ https://github.com/bsgriggs/mendix9-searchable-reference-selector
 
 The following is an example for using the widget on a page with a Transaction to set its association to Category  
 
-![General](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/General.png)  
+![general](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/general.png)  
 
-![Style](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/Style.png)  
+![style](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/style.png)  
 
-![Data Source](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/DataSource.png)  
+![Data Source](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/dataSourceRef.png)   
+*Note: On Select Association is required. Microflow must have the 2 parameters: the page object and the selectable object. See an example below. It can also be used as an On Change microflow.*  
 
-![Actions](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/Actions.png)  
-*Note: On Select Association is required. Microflow must have the 2 parameters: the page object and the selectable object. See an example below. It can also be used as an On Change microflow.*
+*Auto filtering*  
+![filtering](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/filteringAuto.png)   
+*Manual filtering*  
+![filtering](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/filteringManual.png)  
 
 **ACT_Transaction_SelectCategory**  
 ![Select Category](https://github.com/bsgriggs/mendix8-searchable-reference-selector/blob/media/ACT_Transaction_SelectCategory.png)   
