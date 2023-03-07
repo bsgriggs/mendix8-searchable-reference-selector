@@ -91,10 +91,10 @@ export function getProperties(
         hidePropertiesIn(defaultProperties, _values, ["placeholder"]);
     }
 
-    if(!_values.showLabel){
+    if (!_values.showLabel) {
         hidePropertiesIn(defaultProperties, _values, ["label", "labelOrientation", "labelWidth"]);
-    }else if(_values.labelOrientation === "vertical"){
-        hidePropertyIn(defaultProperties,_values, "labelWidth");
+    } else if (_values.labelOrientation === "vertical") {
+        hidePropertyIn(defaultProperties, _values, "labelWidth");
     }
 
     return defaultProperties;

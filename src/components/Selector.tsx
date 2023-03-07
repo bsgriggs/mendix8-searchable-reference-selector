@@ -221,7 +221,7 @@ const Selector = ({
     };
 
     return (
-            <div ref={srsRef} style={{width: "100%"}}>
+        <div ref={srsRef} style={{ width: "100%" }}>
             <div
                 className={`form-control ${showMenu ? "active" : ""} ${isReadOnly ? "read-only" : ""}`}
                 onClick={() => {
@@ -256,7 +256,6 @@ const Selector = ({
                         );
                     }
                 }}
-                
             >
                 <div className="srs-search-input">
                     {/* Hide Search Input if read only and there is already a value */}
@@ -328,7 +327,7 @@ const Selector = ({
                     hasMoreOptions={hasMoreOptions}
                 />
             )}
-       </div>
+        </div>
     );
 };
 

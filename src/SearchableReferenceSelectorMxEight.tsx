@@ -1,4 +1,4 @@
-import React, { createElement } from "react";
+import React, { createElement, ReactElement } from "react";
 import {
     SearchableReferenceSelectorMxEightContainerProps,
     OptionTextTypeEnum
@@ -136,7 +136,7 @@ const SearchableReferenceSelector = ({
     label,
     style,
     labelWidth
-}: SearchableReferenceSelectorMxEightContainerProps): JSX.Element => {
+}: SearchableReferenceSelectorMxEightContainerProps): ReactElement => {
     const [mxFilter, setMxFilter] = React.useState<string>("");
     const [options, setOptions] = React.useState<IOption[]>([]);
     const [currentOption, setCurrentOption] = React.useState<IOption | undefined>();
@@ -353,7 +353,9 @@ const SearchableReferenceSelector = ({
             className={
                 "form-group " +
                 (!showLabel || labelOrientation === "vertical" ? "no-columns " : "") +
-                ((currentValue && currentValue.validation)||(enumAttribute && enumAttribute.validation) ? "has-error " : "") +
+                ((currentValue && currentValue.validation) || (enumAttribute && enumAttribute.validation)
+                    ? "has-error "
+                    : "") +
                 className
             }
             style={style}
@@ -402,9 +404,11 @@ const SearchableReferenceSelector = ({
                     optionsStyle={optionsStyle}
                     setMxFilter={setMxFilter}
                     onSelect={(selectedOption: IOption) => {
-                        selectionType === "enumeration"
-                            ? handleSelectEnum(isReadOnly, selectedOption, onChange, onSelectEmpty, enumAttribute)
-                            : handleSelectRef(isReadOnly, selectedOption, onChange, onSelectEmpty, onSelectAssociation);
+                        if (selectionType === "enumeration") {
+                            handleSelectEnum(isReadOnly, selectedOption, onChange, onSelectEmpty, enumAttribute);
+                        } else {
+                            handleSelectRef(isReadOnly, selectedOption, onChange, onSelectEmpty, onSelectAssociation);
+                        }
                     }}
                     onLeave={() => {
                         if (onLeave) {

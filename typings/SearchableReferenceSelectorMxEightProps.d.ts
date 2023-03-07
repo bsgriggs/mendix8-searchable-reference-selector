@@ -4,7 +4,17 @@
  * @author Mendix Widgets Framework Team
  */
 import { ComponentType, CSSProperties } from "react";
-import { ActionValue, DynamicValue, EditableValue, ListValue, ListActionValue, ListAttributeValue, ListExpressionValue, ListWidgetValue, WebIcon } from "mendix";
+import {
+    ActionValue,
+    DynamicValue,
+    EditableValue,
+    ListValue,
+    ListActionValue,
+    ListAttributeValue,
+    ListExpressionValue,
+    ListWidgetValue,
+    WebIcon
+} from "mendix";
 
 export type LabelOrientationEnum = "horizontal" | "vertical";
 
@@ -85,8 +95,8 @@ export interface SearchableReferenceSelectorMxEightPreviewProps {
     optionCustomContent: { widgetCount: number; renderer: ComponentType<{ caption?: string }> };
     maxMenuHeight: string;
     noResultsText: string;
-    clearIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
-    dropdownIcon: { type: "glyph"; iconClass: string; } | { type: "image"; imageUrl: string; } | null;
+    clearIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
+    dropdownIcon: { type: "glyph"; iconClass: string } | { type: "image"; imageUrl: string } | null;
     selectionType: SelectionTypeEnum;
     selectableObjects: {} | { type: string } | null;
     displayAttribute: string;

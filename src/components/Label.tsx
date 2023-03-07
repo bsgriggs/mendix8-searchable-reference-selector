@@ -7,17 +7,8 @@ interface LabelProps {
     labelWidth: number | undefined;
 }
 
-export default function Label({
-    showLabel,
-    showHorizontal,
-    labelValue,
-    labelWidth
-}: LabelProps): ReactElement | null {
+export default function Label({ showLabel, showHorizontal, labelValue, labelWidth }: LabelProps): ReactElement | null {
     return showLabel && labelValue ? (
-        <label
-            className={"control-label" + (showHorizontal ? " col-sm-" + labelWidth : "")}
-        >
-            {labelValue}
-        </label>
+        <label className={"control-label" + (showHorizontal ? " col-sm-" + labelWidth : "")}>{labelValue}</label>
     ) : null;
 }
